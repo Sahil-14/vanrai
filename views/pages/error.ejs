@@ -1,0 +1,134 @@
+<%- include('../partials/header')%>
+    <!-- Header -->
+    <header id="header" class="header" style="padding-top: 56px">
+      <div class="header-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-container">
+                <h1 class="text-uppercase">
+                 <%= statusCode%>
+                </h1>
+                <p class="p-heading p-large">
+                  <%= message%>
+                </p>
+              </div>
+            </div>
+            <!-- end of col -->
+          </div>
+          <!-- end of row -->
+        </div>
+        <!-- end of container -->
+      </div>
+      <!-- end of header-content -->
+    </header>
+    <!-- end of header -->
+
+
+
+
+
+<%- include('../partials/footer')%>
+   <!-- Scripts -->
+   <script src="/js/jquery.min.js"></script>
+   <!-- jQuery for Bootstrap's JavaScript plugins -->
+   <script src="/js/popper.min.js"></script>
+   <!-- Popper tooltip library for Bootstrap -->
+   <script src="/js/bootstrap.min.js"></script>
+   <!-- Bootstrap framework -->
+   <script src="/js/jquery.easing.min.js"></script>
+   <!-- jQuery Easing for smooth scrolling between anchors -->
+   <script src="/js/swiper.min.js"></script>
+   <!-- Swiper for image and text sliders -->
+   <script src="/js/jquery.magnific-popup.js"></script>
+   <!-- Magnific Popup for lightboxes -->
+   <script src="/js/morphext.min.js"></script>
+   <!-- Morphtext rotating text in the header -->
+   <script src="/js/isotope.pkgd.min.js"></script>
+   <!-- Isotope for filter -->
+   <script src="/js/validator.min.js"></script>
+   <!-- Validator.js - Bootstrap plugin that validates forms -->
+   <script src="/js/scripts.js"></script>
+   <script src="/js/jquery.singlePageNav.min.js"></script>
+   <script src="/slick/slick.min.js"></script>
+   <!-- Custom scripts -->
+
+   <script>
+     function setCarousel() {
+       if ($('.tm-article-carousel').hasClass('slick-initialized')) {
+         $('.tm-article-carousel').slick('destroy');
+       }
+
+       if ($(window).width() < 438) {
+         // Slick carousel
+         $('.tm-article-carousel').slick({
+          autoplay: true,
+          autoplaySpeed: 1500,
+
+           infinite: false,
+           dots: true,
+           slidesToShow: 1,
+           slidesToScroll: 1,
+         });
+       } else {
+         $('.tm-article-carousel').slick({
+          autoplay: true,
+          autoplaySpeed: 2000,
+           infinite: false,
+           dots: true,
+           slidesToShow: 2,
+           slidesToScroll: 1,
+         });
+       }
+     }
+
+     function setPageNav() {
+       if ($(window).width() > 991) {
+         $('#tm-top-bar').singlePageNav({
+           currentClass: 'active',
+           offset: 79,
+         });
+       } else {
+         $('#tm-top-bar').singlePageNav({
+           currentClass: 'active',
+           offset: 65,
+         });
+       }
+     }
+
+     function togglePlayPause() {
+       vid = $('.tmVideo').get(0);
+
+       if (vid.paused) {
+         vid.play();
+         $('.tm-btn-play').hide();
+         $('.tm-btn-pause').show();
+       } else {
+         vid.pause();
+         $('.tm-btn-play').show();
+         $('.tm-btn-pause').hide();
+       }
+     }
+
+     $(document).ready(function () {
+       $(window).on('scroll', function () {
+         if ($(window).scrollTop() > 100) {
+           $('.tm-top-bar').addClass('active');
+         } else {
+           //remove the background property so it comes transparent again (defined in your css)
+           $('.tm-top-bar').removeClass('active');
+         }
+       });
+
+       // Slick carousel
+       setCarousel();
+       setPageNav();
+
+       $(window).resize(function () {
+         setCarousel();
+         setPageNav();
+       });
+     });
+   </script>
+ </body>
+</html>

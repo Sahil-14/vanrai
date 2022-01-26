@@ -1,0 +1,76 @@
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/services">
+        <i class="mdi mdi-grid-large menu-icon"></i>
+        <span class="menu-title">Services</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/packages">
+        <i class="mdi mdi-package menu-icon"></i>
+        <span class="menu-title">Packages</span>
+      </a>
+    </li>
+    <% if(currentUser?.isadmin == 1){ %>
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/users">
+        <i class="mdi mdi-account menu-icon"></i>
+        <span class="menu-title">Users</span>
+      </a>
+    </li>
+    <% } %>
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/dates">
+        <i class="mdi mdi-timer menu-icon"></i>
+        <span class="menu-title">Package Dates</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/bookings">
+        <i class="mdi mdi-calendar menu-icon"></i>
+        <span class="menu-title">Bookings</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-toggle="collapse"
+        href="#adminForms"
+        aria-expanded="false"
+        aria-controls="auth"
+      >
+        <i class="mdi mdi-format-align-justify menu-icon"></i>
+        <span class="menu-title">Forms</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="adminForms">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/vanrai-admin/createService">
+              Add service
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/vanrai-admin/createPackage">
+              Add Package
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/vanrai-admin/createUser"> Add user </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,87 @@
+<%- include('../partials/header')%>
+ <!-- Header -->
+ <header class="header-2">
+  <div class="header-content2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-container-2">
+            <h1 class="">Packages</h1>
+          </div>
+        </div>
+        <!-- end of col -->
+      </div>
+      <!-- end of row -->
+    </div>
+    <!-- end of container -->
+  </div>
+  <!-- end of header-content -->
+</header>
+
+<!-- packages -->
+<div class="tab-pane fade show active" id="4a">
+  <!-- Current Active Tab WITH "show active" classes in DIV tag -->
+  <!-- error   -->
+<% if(error != null ){%>
+  <div class="col-lg-12 heading-section text-center  p-5">
+    <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
+    <p class="text-danger">
+     <%= error %>
+    </p>
+  </div>
+  <% } else { %>
+  <div class="pkg-recommended-place-wrap">
+
+    <% if(packages.length > 0){ %>
+      <% packages.forEach((package,index) => { %>
+    <div class="pkg-recommended-place">
+      <img
+        src="/api/packages/image/<%= package.package_id%>"
+        alt="Image"
+        class="img-fluid pkg-recommended-img"
+      />
+      <div class="pkg-recommended-description-box">
+        <h3 class="pkg-recommended-title"><%= package.name %></h3>
+        <p class="pkg-text-highlight"><%= package.location %></p>
+        <p class="pkg-text-gray">
+          <%= package.description.substring(0,130) %>
+          <a href="#">...read more</a>
+        </p>
+        <p class="pkg-text-highlight">Duration : 2D & 3N</p>
+        <p class="pkg-text-highlight">Start : <%= moment(package.start_date).format( 'MMM-DD-YYYY') %>
+        </p>
+        <p class="pkg-text-highlight">End : <%= moment(package.end_date).format( 'MMM-DD-YYYY') %></p>
+        <div class="button-container d-flex">
+          <a class="btn-solid-reg page-scroll" href="/package/<%= package.package_id%>"
+            >DETAILS / BOOK</a
+          >
+          
+        </div>
+      </div>
+      <a href="#" class="pkg-recommended-price-box">
+        <p class="pkg-recommended-price">₹<%= package.price %></p>
+      </a>
+    </div>
+    <% }) %>
+    <% } %>
+    
+  </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer')%>
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="/js/popper.min.js"></script>
+    <!-- Popper tooltip library for Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Bootstrap framework -->
+    <script src="/js/jquery.easing.min.js"></script>
+    <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="/js/swiper.min.js"></script>
+
+    <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>

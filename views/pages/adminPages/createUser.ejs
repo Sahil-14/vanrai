@@ -1,0 +1,144 @@
+<%- include('../../partials/adminPartials/adminHeader')%>
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Welcome back,</h2>
+              <p class="mb-md-0">Your services dashboard.</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">
+                user / create
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 grid-margin">
+        <div class="card mx-5">
+          <div class="card-body">
+            <h4 class="card-title">Create New User</h4>
+            <form
+              class="forms-sample"
+              role="form"
+              data-toggle="validator"
+              id="userCreateForm"
+              method="post",
+              action="/vanrai-admin/createUser"
+            >
+              <div class="form-group">
+                <label for="userName">User Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  data-error="You must provide user name."
+                  placeholder="User Name"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="userEmail">Email Id</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="Email Id"
+                  data-error="Invalid E-mail Id"
+                  required
+                />
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="userPassword">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  data-error="Minimum 8 characters"
+                  data-minlength="8"
+                  required
+                />
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="userConfirmPassword"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="userConfirmPassword"
+                  placeholder="Confirm Password"
+                  data-error="Minimum 8 characters"
+                  data-match="#password"
+                  data-match-error="Password don't match"
+                  data-minlength="8"
+                  required
+                />
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="isAdmin" name="isadmin"/>
+                    Want to make admin user ? (Admin can  edit / delete any information.)</span>
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2 mt-3">
+                Submit
+              </button>
+              <a class="btn btn-light mt-3" href="/vanrai-admin/users">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:partials/_footer.html -->
+  <%- include('../../partials/adminPartials/adminFooter')%>
+
+  <!-- partial -->
+</div>
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- plugins:js -->
+<script src="../js/jquery.min.js"></script>
+<script src="../vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="../js/admin/off-canvas.js"></script>
+<script src="../js/admin/hoverable-collapse.js"></script>
+<script src="../js/admin/template.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+
+<script src="../js/admin/dataTables.bootstrap4.js"></script>
+
+<script src="../js/admin/drag-drop.js"></script>
+<!-- <script src="../js/admin/file-upload.js"></script> -->
+
+<script src="../js/validator.min.js"></script>
+
+</body>
+</html>

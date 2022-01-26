@@ -1,0 +1,150 @@
+<%- include('../partials/header')%>
+  <!-- Header -->
+  <header class="header-2">
+    <div class="header-content2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-container-2">
+              <h1 class="">CONTACT US</h1>
+            </div>
+          </div>
+          <!-- end of col -->
+        </div>
+        <!-- end of row -->
+      </div>
+      <!-- end of container -->
+    </div>
+    <!-- end of header-content -->
+  </header>
+
+  <div id="section-contact" class="section-area section-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 grid-margin">
+          
+          <% if(successMessage != null){ %>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+              <strong class="text-center"><%= successMessage%></strong> 
+              <a type="button" class="close"  aria-label="Close" href="/contact">
+                <span aria-hidden="true">&times;</span>
+              </a>
+            </div>
+          <% }%>
+          
+          <% if(errorMessage != null){ %>
+          <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <strong class="text-center"><%= errorMessage %></strong> 
+            <a type="button" class="close"  aria-label="Close" href="/contact">
+              <span aria-hidden="true" >&times;</span>
+            </a>
+          </div>
+          <% }%>
+        </div>
+        <div class="col-lg-12 heading-section text-center">
+          <h3 class="section-title">Contact Information</h3>
+          <p>
+            Far far away, behind the word mountains, far from the countries
+            Vokalia and Consonantia, there live the blind texts.
+          </p>
+        </div>
+      </div>
+      <form  data-toggle="validator" id="messageCreateForm" method="post" action="/vanrai-admin/message">
+        <div class="row animate-box">
+          <div class="col-md-6 our-address">
+            <h3>Our Address</h3>
+            <p>
+              Far far away, behind the word mountains, far from the countries
+              Vokalia and Consonantia, there live the blind texts.
+            </p>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-address-card"></i>198 West 21th Street, Suite
+                721 New York NY 10016
+              </li>
+              <li><i class="fas fa-phone"></i>+ 1235 2355 98</li>
+              <li>
+                <i class="fas fa-envelope-square"></i
+                ><a href="#">info@yoursite.com</a>
+              </li>
+              <li>
+                <i class="fab fa-youtube"></i><a href="#">www.yoursite.com</a>
+              </li>
+            </ul>
+          </div>
+        
+          <div class="col-md-6 form-sub-sec">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    name="name"
+                    data-error="You must provide name."
+                    required
+                  />
+                  <div class="help-block with-errors" ></div>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Email"
+                    data-error="You must provide email"
+                    required
+                  />
+                  <div class="help-block with-errors" ></div>
+
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea
+                    name="message"
+                    class="form-control"
+                    id=""
+                    cols="30"
+                    rows="7"
+                    placeholder="Message"
+                    maxlength="400"
+                    data-error="You must provide message"
+                    required
+                  ></textarea>
+                  <div class="help-block with-errors" ></div>
+
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input class="btn-solid-lg page-scroll" type="submit" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<%- include('../partials/footer')%>
+ <!-- Scripts -->
+ <script src="js/jquery.min.js"></script>
+ <!-- jQuery for Bootstrap's JavaScript plugins -->
+ <script src="js/popper.min.js"></script>
+ <!-- Popper tooltip library for Bootstrap -->
+ <script src="js/bootstrap.min.js"></script>
+ <!-- Bootstrap framework -->
+ <script src="js/jquery.easing.min.js"></script>
+ <!-- jQuery Easing for smooth scrolling between anchors -->
+ <script src="js/swiper.min.js"></script>
+
+ <script src="js/validator.min.js"></script>
+ <!-- Validator.js - Bootstrap plugin that validates forms -->
+ <script src="js/scripts.js"></script>
+</body>
+</html>

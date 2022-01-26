@@ -1,0 +1,228 @@
+<%- include('../../partials/adminPartials/adminHeader')%>
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Welcome back,</h2>
+              <p class="mb-md-0">Your packages dashboard.</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">
+                Packages / create
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+      <div class="col-12 grid-margin">
+        <div class="card mx-5">
+          <div class="card-body">
+            <h4 class="card-title">Create new package</h4>
+
+            <form
+              class="forms-sample"
+              role="form"
+              data-toggle="validator"
+              id="packageCreateForm"
+              method="post",
+              action="/vanrai-admin/createPackage"
+              enctype="multipart/form-data"
+            >
+              <div class="form-group">
+                <label for="packageName">Package Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  data-error="You must provide package name."
+                  placeholder="Package Name"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="packageLocation"> Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  name="location"
+                  placeholder="Location"
+                  data-error="You must provide location."
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="packagePrice"> Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  name="price"
+                  placeholder="Price"
+                  data-error="You provide numeric value"
+                  minlength="1"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="packageDuration"> Duration</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="duration"
+                  name="duration"
+                  placeholder="duration"
+                  data-error="You must provide duration"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group bg-white">
+                <label for="dates"> Dates</label>
+
+                  <input id="datepicker" class="input-group date  form-control " style="background-color: white;" type="text" data-date-format="yyyy-mm-dd" readonly name="dates"  data-error="You must provide duration"
+                  required/>
+                
+              
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+             
+
+
+              <div class="form-group">
+                <label for="packageDescription">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  rows="4"
+                  maxlength="500"
+                  minlength="5"
+                  data-error="minimum 5 and maximum 500 characters"
+                  required
+                ></textarea>
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+            
+              <div id="dynamic_field">
+                <div class="form-group">
+                  <label for="e_location" class="col-lg-3 col-sm-3  col-form-label">Highlights:</label>
+                    <div class="form-row">
+                      
+                        <div class="col-lg-9 col-sm-9">
+                            <input type="text" name="highlights" placeholder="highlights"
+                                class="form-control" data-error="Minimum 1 highlight" required/>
+                        </div>
+                        <div class="col-lg-3 col-sm-3">
+                            <button type="button" name="add" id="add"
+                                class="btn btn-success form-control">ADD</button>
+                        </div>
+                        <div class="help-block with-errors text-danger"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="isrecommended" name="isrecommended"/>
+                  Recommended Package ? (To display on homepage of website)</span>
+                </label>
+              </div>
+            </div>
+              <div class="form-group">
+                <label for="servimage">Package Image</label>
+                <input
+                  type="file"
+                  name="packimage"
+                  class="form-control"
+                  placeholder="Starting Price"
+                  data-error="image must be selected"
+                  accept="image/*"
+                  required
+                />
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2 mt-3">
+                Submit
+              </button>
+              <a class="btn btn-light mt-3" href="/vanrai-admin/packages">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:partials/_footer.html -->
+  <%- include('../../partials/adminPartials/adminFooter')%>
+
+  <!-- partial -->
+</div>
+
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- plugins:js -->
+<script src="../js/jquery.min.js"></script>
+
+<script src="../vendors/base/vendor.bundle.base.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- endinject -->
+
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="../js/admin/off-canvas.js"></script>
+<script src="../js/admin/hoverable-collapse.js"></script>
+<script src="../js/admin/template.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+
+<!-- End custom js for this page-->
+<script src="../js/validator.min.js"></script>
+
+<script src="../js/date.js"></script>
+
+<script>
+ 
+ $(function () {
+        $('#datepicker').datepicker({
+          multidate:true,
+          
+        });
+      });
+  $(document).ready(function () {
+            var i = 1;
+            $('#add').click(function () {
+                i++;
+                $('#dynamic_field')
+                    .append('<div id="row' + i + '"><div class="form-group"><div class="form-row"><div class="col-lg-9 col-sm-6"><input type="text" name="highlights" placeholder="highlights"class="form-control" /></div><div class="col-lg-3 col-sm-3"><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove form-control">Remove</button></div></div></div></div>');
+            });
+            $(document).on('click', '.btn_remove', function () {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id + '').remove();
+            });
+
+  });
+ 
+</script>
+</body>
+</html>

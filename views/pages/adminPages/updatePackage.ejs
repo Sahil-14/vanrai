@@ -1,0 +1,321 @@
+<%- include('../../partials/adminPartials/adminHeader')%>
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Welcome back,</h2>
+              <p class="mb-md-0">Your packages dashboard.</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">
+                Packages / update
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 grid-margin">
+        <% if(successMessage != null){ %>
+          <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <strong class="text-center"><%= successMessage%></strong> 
+            <a type="button" class="close"  aria-label="Close" href="/vanrai-admin/updatePackage/<%= package?.package_id%>">
+              <span aria-hidden="true">&times;</span>
+            </a>
+          </div>
+        <% }%>
+        
+        <% if(errorMessage != null){ %>
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+          <strong class="text-center"><%= errorMessage %></strong> 
+          <a type="button" class="close"  aria-label="Close" href="/vanrai-admin/updatePackage/<%= package?.package_id%>">
+            <span aria-hidden="true" >&times;</span>
+          </a>
+        </div>
+        <% }%>
+      </div>
+      <% if(error != null || package == null){ %>
+        <div class="col-lg-12 heading-section text-center  p-5">
+          <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
+          <p class="text-danger">
+           <%= error %>
+          </p>
+        </div>
+      <% }else{ %>
+      <div class="col-12 grid-margin">
+        <div class="card mx-5">
+          <div class="card-body">
+            <h4 class="card-title">Update package</h4>
+            <form
+              class="forms-sample"
+              role="form"
+              data-toggle="validator"
+              id="packageCreateForm"
+              method="post"
+              action="/vanrai-admin/updatePackage/<%= package?.package_id%>"
+            >
+              <div class="form-group">
+                <label for="packageName">Package Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  data-error="You must provide package name."
+                  value="<%= package?.name%>"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="packageLocation"> Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  name="location"
+                  value="<%= package?.location%>"
+                  data-error="You must provide location."
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="packagePrice"> Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  name="price"
+                  value="<%= package?.price%>"
+                  data-error="You provide numeric value"
+                  minlength="1"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="packageDuration"> Duration</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="duration"
+                  name="duration"
+                  value="<%= package?.duration%>"
+                  data-error="You must provide duration"
+                  required
+                />
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group bg-white">
+                <label for="dates"> Dates</label>
+
+                  <input id="datepicker" class="input-group date  form-control " style="background-color: white;" type="text" data-date-format="yyyy-mm-dd"  name="dates"   value="<%= package?.dates%>"
+                  required/>
+                
+              
+                <!-- Error -->
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="packageDescription">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  rows="4"
+                  maxlength="500"
+                  minlength="5"
+                  data-error="minimum 5 and maximum 500 characters"
+                  required
+                ><%= package?.description%></textarea>
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+            
+              <div id="dynamic_field">
+                <% if(package.packageHighlights?.length  >= 1){ %>
+                <% for(var i=1;i<= package.packageHighlights.length;i++){  %>
+                  <% if(i== 1){var link="teacher_"+i+"_link" %>
+                <div class="form-group">
+                  <label for="highlights"  col-form-label">Highlights:</label>
+                    <div class="form-row">
+                        <div class="col-lg-9 col-sm-6">
+                            <input type="text" name="highlights" value="<%= package.packageHighlights[i-1].name%>"
+                                class="form-control" data-error="Minimum 1 highlight" required/>
+                        </div>
+                        <div class="col-lg-3 col-sm-3">
+                            <button type="button" name="add" id="add"
+                                class="btn btn-success form-control">ADD</button>
+                        </div>
+                        <div class="help-block with-errors text-danger"></div>
+
+                    </div>
+                </div>
+                <% }else{%>
+                  <div class="form-group">
+                    <div class="form-row">
+                     
+                        <div class="col-lg-9 col-sm-6 ">
+                            <input type="text" name="highlights" value="<%= package.packageHighlights[i-1].name%>" 
+                                class="form-control" required />
+                        </div>
+                        <div class="col-lg-3 col-sm-3 ">
+                            <button type="button" name="remove" id="<%= i %>"
+                                class="btn btn-danger form-control">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+                <% } %>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="isrecommended" name="isrecommended" <%= package?.isrecommended == 1 ? "checked" : "" %>/>
+                  Recommended Package ? (To display on homepage of website)</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+            
+              <label for="exampleFormControlFile1" class="col-lg-4 col-sm-12 col-form-label">Current Image:</label>
+              <div class="row">
+              <div class="col-lg-9 col-sm-12 d-flex justify-content-center align-items-center flex-column">
+      
+                  <a href=""><img src="/api/packages/image/<%= package?.package_id%>" width="150" height="150"></a>
+              </div>
+              <div class="col-lg-3 col-sm-12 mt-3">
+                  <a class="btn btn-success form-control" href="#" data-toggle="modal" data-target="#imageModal">Change Image</a>
+              </div>
+            </div>
+          </div>
+              <button type="submit" class="btn btn-primary mr-2 mt-3">
+                Submit
+              </button>
+              <a class="btn btn-light mt-3" href="/vanrai-admin/packages">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:partials/_footer.html -->
+  <%- include('../../partials/adminPartials/adminFooter')%>
+  <!-- partial -->
+  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            
+                  <div>
+                      <h5 class="modal-title" id="exampleModalLabel">Note : Clicking update will change image directly</h5>
+                  </div>
+                 
+                            
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form action="/vanrai-admin/packages/image/<%= package?.package_id%>"
+                  method="POST" enctype="multipart/form-data" class="col col-sm-12 mt-5">
+                  <div class="form-group row">
+                  
+                      <div class="col-lg-9 col-sm-12 ">
+                          <input type="file" class="form-control file" id="packimage" name="packimage"  data-error="please select image"
+                              accept="image/*" required>
+                      </div>
+                      <div class="help-block with-errors text-danger"></div>
+  
+                  </div>
+                  <input type="hidden" name="e_id" value="">
+  
+                  <div class="form-group row">
+  
+                      <div class="col-12">
+                          <input type="submit" name="submit" id="ImgSubmitBtn" value="Update" "
+                              class="btn btn-primary btn-lg btn-block">
+                          <div class="help-block with-errors text-danger"></div>
+  
+                      </div>
+  
+                  </div>
+  
+              </form>
+          </div>
+  
+      </div>
+  </div>
+  </div>
+  
+</div>
+
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- plugins:js -->
+<script src="/../js/jquery.min.js"></script>
+
+<!-- <script src="../js/bootstrap-datepicker.min.js"></script> -->
+<script src="/../vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="/../js/admin/off-canvas.js"></script>
+<script src="/../js/admin/hoverable-collapse.js"></script>
+<script src="/../js/admin/template.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+
+<!-- End custom js for this page-->
+<script src="/../js/validator.min.js"></script>
+
+<script src="/../js/date.js"></script>
+
+
+<script>
+ 
+ $(function () {
+        $('#datepicker').datepicker({
+          multidate:true,
+          
+        });
+      });
+  $(document).ready(function () {
+            var i = 1;
+            $('#add').click(function () {
+                i++;
+                $('#dynamic_field')
+                    .append('<div id="row' + i + '"><div class="form-group"><div class="form-row"><div class="col-lg-9 col-sm-6"><input type="text" name="highlights" placeholder="highlights"class="form-control" /></div><div class="col-lg-3 col-sm-3"><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove form-control">Remove</button></div></div></div></div>');
+            });
+            $(document).on('click', '.btn_remove', function () {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id + '').remove();
+            });
+            
+ 
+
+
+  });
+ 
+</script>
+</body>
+</html>
