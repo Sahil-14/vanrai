@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home4/efkodtpv/vanrai
+    - export DEPLOYPATH=/home4/efkodtpv/vanrai/
     - /bin/cp * $DEPLOYPATH
    
