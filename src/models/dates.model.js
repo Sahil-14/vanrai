@@ -1,4 +1,4 @@
-const { date } = require("faker");
+
 
 module.exports = (sequelize, Sequelize) => {
   const Dates = sequelize.define("dates", {

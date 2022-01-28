@@ -21,7 +21,7 @@ const axios = require('axios');
 
 const serviceRouter = express.Router();
 const multer = require("multer");
-const sharp = require('sharp');
+
 const { currentUser } = require('../middleware/currentUser');
 const { requireAuth } = require('../middleware/requireAuth');
 const { auth } = require('../middleware/auth');
@@ -47,8 +47,7 @@ const upload = multer({
 serviceRouter.get('/services', async (req, res) => {
 
   try {
-    // const response = await axios.get("http://localhost:5000/api/services/");
-    const response = await axios.get("http://vanraiadventures.in:5000/api/services/");
+    const response = await axios.get("http://vanraiadventures.in/api/services/");
     res.render('pages/services', {
       page: 'service',
       services: response.data.services,
@@ -90,9 +89,7 @@ serviceRouter.post('/vanrai-admin/createService',
   ],
   validateRequest,
   async (req, res) => {
-
     const { name, description, price, highlights } = req.body;
-
     try {
 
       const existingService = await Service.findOne({ where: { name }, attributes: ['service_id', 'name'] });
@@ -100,7 +97,7 @@ serviceRouter.post('/vanrai-admin/createService',
         throw new BadRequestError('Service aleady exists.');
       }
 
-      const buffer = await sharp(req.file.buffer).png().toBuffer();
+      const buffer = req.file.buffer
       const newService = {
         name: name.toLowerCase(),
         description,
@@ -132,11 +129,11 @@ serviceRouter.post('/vanrai-admin/createService',
         }
       }));
     } catch (error) {
-      let err = "";
+      var err = "";
       if (error instanceof BadRequestError) {
         err = `Service already exist with name = ${name}`
       } else {
-        err = "Error to create service"
+        err = error
       }
 
       res.redirect(url.format({
@@ -242,9 +239,8 @@ serviceRouter.get('/vanrai-admin/updateService/:id', currentUser, requireAuth, a
   const currentUser = req.currentUser
 
   try {
-    // const response = await axios.get(`http://localhost:5000/api/services/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
-    const response = await axios.get(`http://vanraiadventures.in:5000/api/services/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
+    const response = await axios.get(`http://vanraiadventures.in/api/services/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
     res.render('pages/adminPages/updateService', {
       successMessage: req.query?.successMessage || null,
@@ -325,13 +321,13 @@ serviceRouter.post('/vanrai-admin/updateService/:id',
       }
 
     } catch (error) {
-      let err = ""
+      var err = ""
       if (error instanceof BadRequestError) {
         err = `Error : Service already exist with name = ${name}`
       } else if (error instanceof NotFoundError) {
         err = "Service not found"
       } else {
-        err = "Error to update service , try again!"
+        err = error
       }
 
       res.redirect(url.format({
@@ -377,7 +373,7 @@ serviceRouter.get('/api/services/image/:id', async (req, res) => {
 //change image
 serviceRouter.post('/vanrai-admin/services/image/:id', upload.single("servimage"), async (req, res) => {
   const service_id = req.params.id;
-  const image = await sharp(req.file.buffer).png().toBuffer();
+  const image = req.file.buffer
   try {
     const response = await Service.update({ image }, { where: { service_id } });
     if (response == 1) {
@@ -393,11 +389,11 @@ serviceRouter.post('/vanrai-admin/services/image/:id', upload.single("servimage"
     }
 
   } catch (error) {
-    let err = '';
+    var err = '';
     if (error instanceof NotFoundError) {
       err = 'Service not found'
     } else {
-      err = 'Error to update image, please try again'
+      err = error
     }
     res.redirect(url.format({
       pathname: `/vanrai-admin/updateService/${service_id}`,

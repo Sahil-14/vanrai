@@ -21,7 +21,6 @@ dateRouter.get('/api/dates/', auth, requireAuth, async (req, res) => {
   try {
     const dates = await Dates.findAll({
       where: {
-
       }
     });
     res.status(200).send({ dates });

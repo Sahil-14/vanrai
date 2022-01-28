@@ -28,6 +28,7 @@ const errorHandler = (
       errors: [
         {
           message: 'Something wend wrong',
+          err:err.message
         },
       ],
     });

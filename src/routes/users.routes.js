@@ -94,7 +94,6 @@ userRouter.post('/api/users/signup',
  * ------- signin user --------*
  *******************************/
 userRouter.post('/api/users/signin',
-
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password')
@@ -203,8 +202,7 @@ userRouter.post('/vanrai-admin/createUser', currentUser, requireAuth, isAdmin, a
   const token = req.session?.jwt;
   console.log(token);
   try {
-    // await axios.post(`http://localhost:5000/api/users/signup`, req.body, { headers: { "Authorization": `Bearer ${token}` } });
-    await axios.post(`http://vanraiadventures.in:5000/api/users/signup`, req.body, { headers: { "Authorization": `Bearer ${token}` } });
+    await axios.post(`http://vanraiadventures.in/api/users/signup`, req.body, { headers: { "Authorization": `Bearer ${token}` } });
 
     res.redirect(url.format({
       pathname: "/vanrai-admin/users",
@@ -276,9 +274,8 @@ userRouter.get('/vanrai-admin/updateUser/:id', currentUser, requireAuth, async (
   const currentUser = req.currentUser
 
   try {
-    // const response = await axios.get(`http://localhost:5000/api/users/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
-    const response = await axios.get(`http://vanraiadventures.in:5000/api/users/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
+    const response = await axios.get(`http://vanraiadventures.in/api/users/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
     res.render('pages/adminPages/updateUser', {
       successMessage: req.query?.successMessage || null,

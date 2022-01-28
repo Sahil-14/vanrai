@@ -21,11 +21,9 @@ const { NotFoundError } = require('./src/error')
 
 
 const app = express();
-// var corsOptions = {
-//   origin: "http://localhost:5000"
-// };
+
 var corsOptions = {
-  origin: "http://vanraiadventures.in:5000"
+  origin: "http://vanraiadventures.in"
 };
 app.use(cors(corsOptions));
 db.sequelize.sync();
@@ -61,16 +59,14 @@ app.get('/', async (req, res) => {
   var packages = [];
   try {
     try {
-      // const serviceResponse = await axios.get("http://localhost:5000/api/services/");
-      const serviceResponse = await axios.get("http://vanraiadventures.in:5000/api/services/");
+      const serviceResponse = await axios.get("http://vanraiadventures.in/api/services/");
 
       services = serviceResponse.data.services
     } catch (error) {
       services = []
     }
     try {
-      const packageResponse = await axios.get("http://vanraiadventures.in:5000/api/packages/");
-      // const packageResponse = await axios.get("http://localhost:5000/api/packages/");
+      const packageResponse = await axios.get("http://vanraiadventures.in/api/packages/");
 
       packages = packageResponse.data.packages;
     } catch (error) {

@@ -20,14 +20,13 @@ const { BadRequestError, DatabaseOperationError, NotFoundError } = require('../e
 const axios = require('axios');
 const packageRouter = express.Router();
 const multer = require("multer");
-const sharp = require('sharp');
 const { currentUser } = require('../middleware/currentUser');
 const { requireAuth } = require('../middleware/requireAuth');
 const { auth } = require('../middleware/auth');
 
 var moment = require('moment'); // require
 const url = require('url');
-var colors = require('colors')
+
 
 const Op = db.Sequelize.Op;
 
@@ -49,9 +48,8 @@ const upload = multer({
  *******************************/
 packageRouter.get('/packages', async (req, res) => {
   try {
-    // const response = await axios.get("http://localhost:5000/api/packages/");
 
-    const response = await axios.get("http://vanraiadventures.in:5000/api/packages/");
+    const response = await axios.get("http://vanraiadventures.in/api/packages/");
 
     res.render('pages/packages', {
       page: 'packages',
@@ -73,8 +71,7 @@ packageRouter.get('/packages', async (req, res) => {
  *******************************************************/
 packageRouter.get('/package/:id', async (req, res) => {
   try {
-    // const response = await axios.get(`http://localhost:5000/api/packages/${req.params.id}`);
-    const response = await axios.get(`http://vanraiadventures.in:5000/api/packages/${req.params.id}`);
+    const response = await axios.get(`http://vanraiadventures.in/api/packages/${req.params.id}`);
 
     const dates = await Dates.findAll({ where: { package_id: req.params.id }, attributes: ['date'] })
     var availableDates = [];
@@ -155,7 +152,7 @@ packageRouter.post('/vanrai-admin/createPackage',
       if (existingPackage) {
         throw new BadRequestError('Package aleady exists.');
       }
-      const buffer = await sharp(req.file.buffer).png().toBuffer();
+      const buffer = req.file.buffer
       const newPackage = {
         name: name.toLowerCase(),
         location,
@@ -208,12 +205,12 @@ packageRouter.post('/vanrai-admin/createPackage',
       }));
 
     } catch (error) {
-      console.log(colors.red(error));
-      let err = "";
+     
+      var err = "";
       if (error instanceof BadRequestError) {
         err = `package already exist with name = ${name}`
       } else {
-        err = "Error to create package"
+        err = error
       }
 
       res.redirect(url.format({
@@ -322,9 +319,8 @@ packageRouter.get('/vanrai-admin/updatePackage/:id', currentUser, requireAuth, a
   const currentUser = req.currentUser
 
   try {
-    // const response = await axios.get(`http://localhost:5000/api/packages/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
-    const response = await axios.get(`http://vanraiadventures.in:5000/api/packages/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
+    const response = await axios.get(`http://vanraiadventures.in/api/packages/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
     const dates = await Dates.findAll({ where: { package_id: req.params.id }, attributes: ['date'] })
     var dateToString = [];
@@ -454,13 +450,13 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
         throw new NotFoundError();
       }
     } catch (error) {
-      console.log(error)
+      
       if (error instanceof BadRequestError) {
         err = `Package with name =${name} already exist`
       } else if (error instanceof NotFoundError) {
         err = "Package not found"
       } else {
-        err = "Error to update package"
+        err = error
       }
       res.redirect(url.format({
         pathname: "/vanrai-admin/packages",
@@ -487,7 +483,7 @@ packageRouter.get('/api/packages/image/:id', async (req, res) => {
       throw new NotFoundError();
     }
 
-    res.set('Content-Type', 'image/png');
+    res.set('Content-Type', 'image');
     res.status(200).send(package.image);
 
   } catch (error) {
@@ -502,7 +498,7 @@ packageRouter.get('/api/packages/image/:id', async (req, res) => {
 //change image
 packageRouter.post('/vanrai-admin/packages/image/:id', upload.single("packimage"), async (req, res) => {
   const package_id = req.params.id;
-  const image = await sharp(req.file.buffer).png().toBuffer();
+  const image = req.file.buffer
   try {
     const response = await Packages.update({ image }, { where: { package_id } });
     if (response == 1) {

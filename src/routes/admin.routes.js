@@ -1,5 +1,4 @@
 const express = require('express');
-const { body } = require('express-validator');
 const db = require('../models');
 const Service = db.services;
 const Package = db.packages;
@@ -11,7 +10,6 @@ const { validateRequest } = require('../middleware/validateRequest');
 const { BadRequestError, DatabaseOperationError, NotFoundError } = require('../error');
 const axios = require('axios');
 var moment = require('moment')
-var colors = require('colors');
 
 const adminRouter = express.Router();
 
@@ -37,16 +35,15 @@ adminRouter.get('/vanrai-admin/', currentUser, requireAuth, async (req, res) => 
     packageCount = await Package.count({});
     userCount = await Users.count({})
     bookingCount = await Bookings.count({})
-    console.log(colors.green(serviceCount, packageCount, userCount, bookingCount))
   } catch (error) {
-    console.log(colors.red(error));
+    console.log(error);
   }
   res.render('pages/adminPages/dashboard', {
     serviceCount,
     packageCount,
     userCount,
     bookingCount,
-    currentUser
+    currentUser: "test@test.com"
   })
 })
 
@@ -58,8 +55,7 @@ adminRouter.get('/vanrai-admin/users', currentUser, requireAuth, async (req, res
   const currentUser = req.currentUser
 
   try {
-    // const response = await axios.get("http://localhost:5000/api/users/", { headers: { "Authorization": `Bearer ${token}` } });
-    const response = await axios.get("http://vanraiadventures.in:5000/api/users/", { headers: { "Authorization": `Bearer ${token}` } });
+    const response = await axios.get("http://vanraiadventures.in/api/users/", { headers: { "Authorization": `Bearer ${token}` } });
 
     const users = response.data.users;
 
@@ -98,8 +94,7 @@ adminRouter.get('/vanrai-admin/services', currentUser, requireAuth, async (req, 
   const currentUser = req.currentUser
 
   try {
-    // const response = await axios.get("http://localhost:5000/api/services/");
-    const response = await axios.get("http://vanraiadventures.in:5000/api/services/");
+    const response = await axios.get("http://vanraiadventures.in/api/services/");
     res.render('pages/adminPages/services', {
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
@@ -131,9 +126,7 @@ adminRouter.get('/vanrai-admin/packages', currentUser, requireAuth, async (req, 
   const currentUser = req.currentUser
 
   try {
-    // const response = await axios("http://localhost:5000/api/packages/");
-
-    const response = await axios("http://vanraiadventures.in:5000/api/packages/");
+    const response = await axios("http://vanraiadventures.in/api/packages/");
 
     res.render('pages/adminPages/packages', {
       successMessage: req.query?.successMessage || null,
