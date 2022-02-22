@@ -35,9 +35,8 @@
           <div
             class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100"
           >
-            <a class="navbar-brand brand-logo" href="#">Inteuron</a>
-            <a class="navbar-brand brand-logo-mini" href="#"
-              ><img src="../images/inteuron-logo.jpeg" alt="logo"
+            <a class="navbar-brand" href="#"
+              ><img src="../images/inteuron.png" alt="logo"
             /></a>
             <button
               class="navbar-toggler navbar-toggler align-self-center"
@@ -105,260 +104,278 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-  <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link" href="/vanrai-admin/">
-        <i class="mdi mdi-home menu-icon"></i>
-        <span class="menu-title">Dashboard</span>
-      </a>
-    </li>
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/vanrai-admin/">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="/vanrai-admin/services">
-        <i class="mdi mdi-grid-large menu-icon"></i>
-        <span class="menu-title">Services</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/vanrai-admin/packages">
-        <i class="mdi mdi-package menu-icon"></i>
-        <span class="menu-title">Packages</span>
-      </a>
-    </li>
-    <% if(currentUser?.isadmin == 1){ %>
-    <li class="nav-item">
-      <a class="nav-link" href="/vanrai-admin/users">
-        <i class="mdi mdi-account menu-icon"></i>
-        <span class="menu-title">Users</span>
-      </a>
-    </li>
-    <% } %>
-    <li class="nav-item">
-      <a class="nav-link" href="/vanrai-admin/dates">
-        <i class="mdi mdi-timer menu-icon"></i>
-        <span class="menu-title">Package Dates</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/vanrai-admin/bookings">
-        <i class="mdi mdi-calendar menu-icon"></i>
-        <span class="menu-title">Bookings</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        data-toggle="collapse"
-        href="#adminForms"
-        aria-expanded="false"
-        aria-controls="auth"
-      >
-        <i class="mdi mdi-format-align-justify menu-icon"></i>
-        <span class="menu-title">Forms</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="adminForms">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" href="/vanrai-admin/createService">
-              Add service
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/vanrai-admin/services">
+                <i class="mdi mdi-grid-large menu-icon"></i>
+                <span class="menu-title">Services</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/vanrai-admin/packages">
+                <i class="mdi mdi-package menu-icon"></i>
+                <span class="menu-title">Packages</span>
+              </a>
+            </li>
+            <% if(currentUser?.isadmin == 1){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/vanrai-admin/users">
+                <i class="mdi mdi-account menu-icon"></i>
+                <span class="menu-title">Users</span>
+              </a>
+            </li>
+            <% } %>
+            <li class="nav-item">
+              <a class="nav-link" href="/vanrai-admin/dates">
+                <i class="mdi mdi-timer menu-icon"></i>
+                <span class="menu-title">Package Dates</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/vanrai-admin/bookings">
+                <i class="mdi mdi-calendar menu-icon"></i>
+                <span class="menu-title">Bookings</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                href="#adminForms"
+                aria-expanded="false"
+                aria-controls="auth"
+              >
+                <i class="mdi mdi-format-align-justify menu-icon"></i>
+                <span class="menu-title">Forms</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="adminForms">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/vanrai-admin/createService">
+                      Add service
+                    </a>
+                  </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/vanrai-admin/createPackage">
-              Add Package
-            </a>
-          </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/vanrai-admin/createPackage">
+                      Add Package
+                    </a>
+                  </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/vanrai-admin/createUser"> Add user </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</nav>
-
-     
-
-<div class="main-panel">
-  <div class="content-wrapper">
-    <div class="row">
-      <div class="col-md-12 grid-margin">
-        <div class="d-flex justify-content-between flex-wrap">
-          <div class="d-flex align-items-end flex-wrap">
-            <div class="mr-md-3 mr-xl-5">
-              <h2>Welcome back,</h2>
-             
-            </div>
-            <div class="d-flex">
-              <i class="mdi mdi-home text-muted hover-cursor"></i>
-              <p class="text-muted mb-0 hover-cursor">
-                &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
-              </p>
-              <p class="text-primary mb-0 hover-cursor">
-                Booking / update
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 grid-margin">
-        <% if(successMessage != null){ %>
-          <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            <strong class="text-center"><%= successMessage%></strong> 
-            <a type="button" class="close"  aria-label="Close" href="/vanrai-admin/updateDate">
-              <span aria-hidden="true">&times;</span>
-            </a>
-          </div>
-        <% }%>
-        
-        <% if(errorMessage != null){ %>
-        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-          <strong class="text-center"><%= errorMessage %></strong> 
-          <a type="button" class="close"  aria-label="Close" href="/vanrai-admin/updateDate">
-            <span aria-hidden="true" >&times;</span>
-          </a>
-        </div>
-        <% }%>
-      </div>
-      <% if(error != null ){%>
-        <div class="col-lg-12 heading-section text-center  p-5">
-          <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
-          <p class="text-danger">
-           <%= error %>
-          </p>
-        </div>
-        <% } else { %>
-
-          <div class="col-12 grid-margin">
-            <div class="card mx-5">
-              <div class="card-body">
-                <h4 class="card-title">Update booking status</h4>
-                <form
-                  class="forms-sample"
-                  role="form"
-                  method="post",
-                  action="/vanrai-admin/updateBooking/<%=booking.booking_id%>"
-                >
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="serviceName"> Package Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="<%= booking.package_name%>"
-                    disabled
-                  />
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="serviceName"> Booking date</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="<%= booking.date%>"
-                    disabled
-                  />
-                </div>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/vanrai-admin/createUser">
+                      Add user
+                    </a>
+                  </li>
+                </ul>
               </div>
-                <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="serviceName"> Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="<%= booking.name%>"
-                    disabled
-                  />
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="serviceName"> Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="<%= booking.email%>"
-                    disabled
-                  />
-                </div>
-              </div>
-                <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="serviceName"> phone</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="<%= booking.phone%>"
-                    disabled
-                  />
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="serviceName"> price</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="<%= booking.price%>"
-                    disabled
-                  />
-                </div>
-              </div>
-              <div class="col-md-12 form-group">
-                <label for="serviceName"> Number of people</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  value="<%= booking.people%>"
-                  disabled
-                />
-              </div>
-                  <div class="form-group">
-                    <label for="userName">Status</label>
-                    <select class="form-control form-select form-select-lg mb-3" name="status">
-                      <option selected><%= booking.status%></option>
-                      <option value="waiting">waiting</option>
-                      <option value="complete">complete</option>
-                      <option value="cancelled">cancelled</option>
-                    </select>
-                    <!-- Error -->
+            </li>
+          </ul>
+        </nav>
+
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="d-flex justify-content-between flex-wrap">
+                  <div class="d-flex align-items-end flex-wrap">
+                    <div class="mr-md-3 mr-xl-5">
+                      <h2>Welcome back,</h2>
+                    </div>
+                    <div class="d-flex">
+                      <i class="mdi mdi-home text-muted hover-cursor"></i>
+                      <p class="text-muted mb-0 hover-cursor">
+                        &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
+                      </p>
+                      <p class="text-primary mb-0 hover-cursor">
+                        Booking / update
+                      </p>
+                    </div>
                   </div>
-                  
-                  
-                  <button type="submit" class="btn btn-primary mr-2 mt-3">
-                    Submit
-                  </button>
-                  <a class="btn btn-light mt-3" href="/vanrai-admin/bookings">Cancel</a>
-                </form>
+                </div>
               </div>
+              <div class="col-12 grid-margin">
+                <% if(successMessage != null){ %>
+                <div
+                  class="alert alert-success alert-dismissible fade show mt-3"
+                  role="alert"
+                >
+                  <strong class="text-center"><%= successMessage%></strong>
+                  <a
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    href="/vanrai-admin/updateDate"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </a>
+                </div>
+                <% }%> <% if(errorMessage != null){ %>
+                <div
+                  class="alert alert-danger alert-dismissible fade show mt-3"
+                  role="alert"
+                >
+                  <strong class="text-center"><%= errorMessage %></strong>
+                  <a
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    href="/vanrai-admin/updateDate"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </a>
+                </div>
+                <% }%>
+              </div>
+              <% if(error != null ){%>
+              <div class="col-lg-12 heading-section text-center p-5">
+                <h2 class="section-title m-5">
+                  Error <i class="fas fa-exclamation-triangle"></i>
+                </h2>
+                <p class="text-danger"><%= error %></p>
+              </div>
+              <% } else { %>
+
+              <div class="col-12 grid-margin">
+                <div class="card mx-5">
+                  <div class="card-body">
+                    <h4 class="card-title">Update booking status</h4>
+                    <form
+                      class="forms-sample"
+                      role="form"
+                      method="post"
+                      ,
+                      action="/vanrai-admin/updateBooking/<%=booking.booking_id%>"
+                    >
+                      <div class="row">
+                        <div class="col-md-6 form-group">
+                          <label for="serviceName"> Package Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= booking.package_name%>"
+                            disabled
+                          />
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label for="serviceName"> Booking date</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= booking.date%>"
+                            disabled
+                          />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 form-group">
+                          <label for="serviceName"> Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= booking.name%>"
+                            disabled
+                          />
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label for="serviceName"> Email</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= booking.email%>"
+                            disabled
+                          />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 form-group">
+                          <label for="serviceName"> phone</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= booking.phone%>"
+                            disabled
+                          />
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label for="serviceName"> price</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= booking.price%>"
+                            disabled
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-12 form-group">
+                        <label for="serviceName"> Number of people</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          value="<%= booking.people%>"
+                          disabled
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="userName">Status</label>
+                        <select
+                          class="form-control form-select form-select-lg mb-3"
+                          name="status"
+                        >
+                          <option selected><%= booking.status%></option>
+                          <option value="waiting">waiting</option>
+                          <option value="complete">complete</option>
+                          <option value="cancelled">cancelled</option>
+                        </select>
+                        <!-- Error -->
+                      </div>
+
+                      <button type="submit" class="btn btn-primary mr-2 mt-3">
+                        Submit
+                      </button>
+                      <a
+                        class="btn btn-light mt-3"
+                        href="/vanrai-admin/bookings"
+                        >Cancel</a
+                      >
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <% } %>
             </div>
           </div>
-          <% } %>
- 
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <%- include('../../partials/adminPartials/adminFooter')%>
+
+          <!-- partial -->
+        </div>
+      </div>
+      <!-- page-body-wrapper ends -->
     </div>
-  </div>
-  <!-- content-wrapper ends -->
-  <!-- partial:partials/_footer.html -->
-  <%- include('../../partials/adminPartials/adminFooter')%>
+    <!-- plugins:js -->
+    <script src="/../js/jquery.min.js"></script>
+    <script src="/../vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
 
-  <!-- partial -->
-</div>
-</div>
-<!-- page-body-wrapper ends -->
-</div>
-<!-- plugins:js -->
-<script src="/../js/jquery.min.js"></script>
-<script src="/../vendors/base/vendor.bundle.base.js"></script>
-<!-- endinject -->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="/../js/admin/off-canvas.js"></script>
+    <script src="/../js/admin/hoverable-collapse.js"></script>
+    <script src="/../js/admin/template.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
 
-<!-- End plugin js for this page-->
-<!-- inject:js -->
-<script src="/../js/admin/off-canvas.js"></script>
-<script src="/../js/admin/hoverable-collapse.js"></script>
-<script src="/../js/admin/template.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-
-<!-- <script src="../js/admin/file-upload.js"></script> -->
-
-</body>
+    <!-- <script src="../js/admin/file-upload.js"></script> -->
+  </body>
 </html>

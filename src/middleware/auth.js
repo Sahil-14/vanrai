@@ -5,7 +5,7 @@ const { NotAuthorizeError } = require('../error');
 const auth = (req, res, next) => {
    try {
       const token = req.header('Authorization').replace('Bearer ', '');
-      const decoded = jwt.verify(token, "thisissecret");
+      const decoded = jwt.verify(token, process.env.JWT_KEY);
       req.currentUser = decoded
       next();
 

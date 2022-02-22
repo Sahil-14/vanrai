@@ -35,9 +35,9 @@
           <div
             class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100"
           >
-            <a class="navbar-brand brand-logo" href="#">Inteuron</a>
-            <a class="navbar-brand brand-logo-mini" href="#"
-              ><img src="../images/inteuron-logo.jpeg" alt="logo"
+         
+            <a class="navbar-brand" href="#"
+              ><img src="../images/inteuron.png" alt="logo"
             /></a>
             <button
               class="navbar-toggler navbar-toggler align-self-center"
@@ -288,31 +288,64 @@
                 <div class="help-block with-errors text-danger"></div>
               </div>
              
-
-
               <div class="form-group">
                 <label for="packageDescription">Description</label>
                 <textarea
                   class="form-control"
                   id="description"
                   name="description"
-                  rows="4"
-                  maxlength="500"
+                  rows="20"
+                  maxlength="5000"
                   minlength="5"
-                  data-error="minimum 5 and maximum 500 characters"
+                  data-error="minimum 50 and maximum 5000 characters"
                   required
                 ></textarea>
                 <div class="help-block with-errors text-danger"></div>
               </div>
-            
-              <div id="dynamic_field">
+              <!-- Itinerary -->
+              <div class="form-group">
+                <label for="packageDescription">Itinerary </label>
+                <textarea
+                  class="form-control"
+                  id="itinerary"
+                  name="itinerary"
+                  rows="20"
+                  maxlength="5000"
+                  minlength="5"
+                  data-error="minimum 50 and maximum 5000 characters"
+                  
+                ></textarea>
+                <a class="btn my-3 btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Html ?
+                </a>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body">
+                    &lt;b&gt;Title&lt;/b&gt; <br/>
+                    &lt;ul class="list-unstyled li-space-lg"&gt; <br/>
+                      &lt;li&gt; <br/>
+                        &nbsp;&nbsp;&nbsp;&lt;i class="fas fa-square" style="color: #c66995"&gt;&lt;/i&gt;
+                        &nbsp;&nbsp; add your content here <br/>
+                      &lt;/li&gt; <br/>
+                      &lt;li&gt; <br/>
+                        &nbsp;&nbsp;&nbsp;&lt;i class="fas fa-square" style="color: #c66995"&gt;&lt;/i&gt;
+                        &nbsp;&nbsp;add your content here <br/>
+                      &lt;/li&gt; <br/>
+                    &lt;/ul&gt; <br/>
+                    
+                  </div>
+                </div>
+                <div class="help-block with-errors text-danger"></div>
+              </div>
+              
+            <!-- event details -->
+            <div id="dynamic_field">
                 <div class="form-group">
-                  <label for="e_location" class="col-lg-3 col-sm-3  col-form-label">Highlights:</label>
+                  <label for="e_location" class="col-lg-3 col-sm-3  col-form-label">Event Details:</label>
                     <div class="form-row">
                       
                         <div class="col-lg-9 col-sm-9">
-                            <input type="text" name="highlights" placeholder="highlights"
-                                class="form-control" data-error="Minimum 1 highlight" required/>
+                            <input type="text" name="highlights" placeholder=""
+                                class="form-control" data-error="Minimum 1 detail" />
                         </div>
                         <div class="col-lg-3 col-sm-3">
                             <button type="button" name="add" id="add"
@@ -323,6 +356,60 @@
                     </div>
                 </div>
             </div>
+            <!-- thing to carry -->
+            <div id="things_to_carry">
+              <div class="form-group">
+                <label for="things_to_carry" class="col-lg-3 col-sm-3  col-form-label">Things to carry:</label>
+                  <div class="form-row">
+                      <div class="col-lg-9 col-sm-9">
+                          <input type="text" name="thingsToCarry" 
+                              class="form-control" data-error="Minimum 1 thing" />
+                      </div>
+                      <div class="col-lg-3 col-sm-3">
+                          <button type="button" name="thingsToCarryAdd" id="thingsToCarryAdd"
+                              class="btn btn-success form-control">ADD</button>
+                      </div>
+                      <div class="help-block with-errors text-danger"></div>
+
+                  </div>
+              </div>
+            </div>
+              <!-- what we give -->
+              <div id="what_we_give">
+                <div class="form-group">
+                  <label for="what_we_give" class="col-lg-3 col-sm-3  col-form-label">What we'll give:</label>
+                    <div class="form-row">
+                        <div class="col-lg-9 col-sm-9">
+                            <input type="text" name="whatWeGive" 
+                                class="form-control" />
+                        </div>
+                        <div class="col-lg-3 col-sm-3">
+                            <button type="button" name="thingsToCarryAdd" id="whatWeGiveAdd"
+                                class="btn btn-success form-control">ADD</button>
+                        </div>
+                        <div class="help-block with-errors text-danger"></div>
+  
+                    </div>
+                </div>
+              </div>
+             
+              <!-- what we dont -->
+              <div id="what_we_dont">
+                <div class="form-group">
+                  <label for="what_we_dont" class="col-lg-3 col-sm-3  col-form-label">What we don't:</label>
+                    <div class="form-row">
+                        <div class="col-lg-9 col-sm-9">
+                            <input type="text" name="whatWeDont" placeholder=""
+                                class="form-control" />
+                        </div>
+                        <div class="col-lg-3 col-sm-3">
+                            <button type="button" name="thingsToCarryAdd" id="whatWeDontAdd"
+                                class="btn btn-success form-control">ADD</button>
+                        </div>
+                        <div class="help-block with-errors text-danger"></div>
+                    </div>
+                </div>
+              </div>
             <div class="form-group">
               <div class="checkbox">
                 <label>
@@ -393,6 +480,7 @@
         });
       });
   $(document).ready(function () {
+
             var i = 1;
             $('#add').click(function () {
                 i++;
@@ -401,10 +489,53 @@
             });
             $(document).on('click', '.btn_remove', function () {
                 var button_id = $(this).attr("id");
+               
                 $('#row' + button_id + '').remove();
             });
 
-  });
+
+var t = 1;
+
+$('#thingsToCarryAdd').click(function () {
+  t++;
+  $('#things_to_carry')
+    .append('<div id="row_ttc' + t + '"><div class="form-group"><div class="form-row"> <div class="col-lg-9 col-sm-6"><input type="text"  name="thingsToCarry"  placeholder=""  class="form-control"  /></div> <div class="col-lg-3 col-sm-3"> <button type="button"  name="remove"  id="' + t + '"   class="btn btn-danger btn_remove_ttc form-control"   >  Remove   </button>  </div>     </div>   </div> </div>');
+});
+$(document).on('click', '.btn_remove_ttc', function () {
+  var button_id = $(this).attr("id");
+  $('#row_ttc' + button_id + '').remove();
+});
+
+var w = 1;
+$('#whatWeGiveAdd').click(function () {
+  w++;
+  $('#what_we_give')
+    .append('  <div id="row_wwg' + w + '">  <div class="form-group">  <div class="form-row">  <div class="col-lg-9 col-sm-6"> <input  type="text"    name="whatWeGive"  placeholder="whatWeGive"  class="form-control"   /> </div> <div class="col-lg-3 col-sm-3"><button type="button"  name="remove"  id="' + w + '" class="btn btn-danger btn_remove_wwg form-control"  >Remove </button>  </div>     </div>   </div> </div>');
+});
+$(document).on('click', '.btn_remove_wwg', function () {
+  var button_id = $(this).attr("id");
+  $('#row_wwg' + button_id + '').remove();
+});
+
+
+var n = 1;
+$('#whatWeDontAdd').click(function () {
+  n++;
+  $('#what_we_dont')
+    .append(' <div id="row_wwd' + n + '">   <div class="form-group"> <div class="form-row"> <div class="col-lg-9 col-sm-6">   <input  type="text"           name="whatWeDont"           placeholder=""    class="form-control" /></div> <div class="col-lg-3 col-sm-3"><button    type="button"    name="remove"    id="' + n + '"           class="btn btn-danger btn_remove_wwd form-control"  >    Remove         </button>       </div>     </div>   </div> </div>');
+});
+$(document).on('click', '.btn_remove_wwd', function () {
+  var button_id = $(this).attr("id");
+  $('#row_wwd' + button_id + '').remove();
+});
+
+});
+
+
+
+
+
+
  
 </script>
 </body>

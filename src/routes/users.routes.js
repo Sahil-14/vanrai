@@ -52,7 +52,7 @@ userRouter.post('/api/users/signup',
   validateRequest,
   async (req, res) => {
 
-    // console.log(errors);
+
     const { email, password, name } = req.body;
 
     const existingUser = await User.findOne({ where: { email } });
@@ -72,15 +72,15 @@ userRouter.post('/api/users/signup',
           email: user.email,
           isadmin: user.isadmin
         },
-        "thisissecret"
+        process.env.JWT_KEY
       );
-      console.log("JWT : " + userJwt);
+
       req.session = {
         jwt: userJwt,
       };
       res.status(201).send({ message: "User created successfully" });
     } catch (error) {
-      console.log(error)
+
       if (error instanceof BadRequestError) {
         throw new BadRequestError("Email already exist")
       } else {
@@ -121,7 +121,7 @@ userRouter.post('/api/users/signin',
         email: existingUser.email,
         isadmin: existingUser.isadmin
       },
-      "thisissecret"
+      process.env.JWT_KEY
     );
 
     req.session = {
@@ -200,9 +200,9 @@ userRouter.get('/vanrai-admin/createUser', currentUser, requireAuth, isAdmin, as
 })
 userRouter.post('/vanrai-admin/createUser', currentUser, requireAuth, isAdmin, async (req, res) => {
   const token = req.session?.jwt;
-  console.log(token);
+
   try {
-    await axios.post(`http://vanraiadventures.in/api/users/signup`, req.body, { headers: { "Authorization": `Bearer ${token}` } });
+    await axios.post(`${process.env.URL}/api/users/signup`, req.body, { headers: { "Authorization": `Bearer ${token}` } });
 
     res.redirect(url.format({
       pathname: "/vanrai-admin/users",
@@ -274,8 +274,7 @@ userRouter.get('/vanrai-admin/updateUser/:id', currentUser, requireAuth, async (
   const currentUser = req.currentUser
 
   try {
-
-    const response = await axios.get(`http://vanraiadventures.in/api/users/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
+    const response = await axios.get(`${process.env.URL}/api/users/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
     res.render('pages/adminPages/updateUser', {
       successMessage: req.query?.successMessage || null,

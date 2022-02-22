@@ -7,7 +7,7 @@ const currentUser = (req, res, next) => {
   try {
     const payload = jwt.verify(
       req.session.jwt,
-      "thisissecret"
+      process.env.JWT_KEY
     );
     req.currentUser = payload;
   } catch (error) {

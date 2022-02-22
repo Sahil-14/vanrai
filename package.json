@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -12,6 +12,7 @@
     "colors": "^1.4.0",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
@@ -24,5 +25,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }

@@ -55,7 +55,8 @@ adminRouter.get('/vanrai-admin/users', currentUser, requireAuth, async (req, res
   const currentUser = req.currentUser
 
   try {
-    const response = await axios.get("http://vanraiadventures.in/api/users/", { headers: { "Authorization": `Bearer ${token}` } });
+
+    const response = await axios.get(`${process.env.URL}/api/users/`, { headers: { "Authorization": `Bearer ${token}` } });
 
     const users = response.data.users;
 
@@ -94,7 +95,8 @@ adminRouter.get('/vanrai-admin/services', currentUser, requireAuth, async (req, 
   const currentUser = req.currentUser
 
   try {
-    const response = await axios.get("http://vanraiadventures.in/api/services/");
+
+    const response = await axios.get(`${process.env.URL}/api/services/`);
     res.render('pages/adminPages/services', {
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
@@ -126,7 +128,8 @@ adminRouter.get('/vanrai-admin/packages', currentUser, requireAuth, async (req, 
   const currentUser = req.currentUser
 
   try {
-    const response = await axios("http://vanraiadventures.in/api/packages/");
+
+    const response = await axios(`${process.env.URL}/api/packages/`);
 
     res.render('pages/adminPages/packages', {
       successMessage: req.query?.successMessage || null,
@@ -184,7 +187,7 @@ adminRouter.get('/vanrai-admin/dates', currentUser, requireAuth, async (req, res
         package_name: req.query?.package_name ? req.query?.package_name : uniquePackages
       }
     });
-    console.log(uniquePackages)
+   
     res.render('pages/adminPages/dates', {
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
@@ -242,7 +245,7 @@ adminRouter.get('/vanrai-admin/bookings', currentUser, requireAuth, async (req, 
         return self.indexOf(item) === index
       })
     }
-    console.log(uniqueDates);
+ 
 
 
     const bookings = await Bookings.findAll({

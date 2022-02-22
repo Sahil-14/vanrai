@@ -1,19 +1,22 @@
 <%- include('../partials/header')%>
     <!-- Header -->
-    <header id="header" class="header" style="padding-top: 56px">
+    <header id="header" class="header">
       <div class="header-content">
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
               <div class="text-container">
                 <h1 class="text-uppercase">
-                  Vanrai Advanture
+                  Vanrai Adventures
                   <!-- <span id="js-rotating">TEMPLATE, SERVICES, SOLUTIONS</span> -->
                 </h1>
                 <p class="p-heading p-large">
-                  Vanrai advantures is a top advanture company in maharastra,we provide the wide range of trekking packages
+                  Vanrai adventures is a top advanture company in maharastra,we provide the wide range of trekking packages
                 </p>
                 <!-- <a class="btn-solid-lg page-scroll" href="#intro">DISCOVER</a> -->
+                <div class="button-container">
+                  <a class="btn-solid-reg page-scroll" href="/contact">Contact Us</a>
+                </div>
               </div>
             </div>
             <!-- end of col -->
@@ -65,7 +68,7 @@
                 />
               </div>
               <div class="card-body">
-                <h3 class="card-title"><%= service.name %></h3>
+                <h3 class="card-title"><%= service.name.substring(0,40) %></h3>
                 <p>
                   <%= service.description.substring(0,80) %>
                 </p>
@@ -153,8 +156,8 @@
                   <article class="single-package-item tm-carousel-item">
                     <img src="/api/packages/image/<%= package.package_id%>" alt="Image" class="img-fluid" />
                     <div class="single-package-item-txt">
-                      <h3 class="text-uppercase tm-article-title-2">
-                        <%= package.name %>
+                      <h3 class="text-uppercase tm-article-title-2" style="word-wrap: break-word;">
+                        <%= package.name.substring(0,48) %>
                       </h3>
                       <div class="packages-para">
                         <p>
@@ -162,23 +165,13 @@
                             <i class="fa fa-angle-right"></i> <%= package.duration %>
                           </span>
     
-                          <i class="fa fa-angle-right"></i> <%= moment(package.start_date).format( 'MMM-DD-YYYY') %> %>
+                         
                         </p>
                         <p>
-                          <% if(package.packageHighlights.length > 0){ %>
-                            <% package.packageHighlights.forEach((highlight,index) => { %>
-                              <% if(index < 2 ){%>
-                                <% if(index == 0 ){%>
-                                <span>
-                                  <i class="fa fa-angle-right"></i> <%=  highlight.name%>
-                                </span>
-                                <% } else{%>
-                                  <i class="fa fa-angle-right"></i> <%=  highlight.name%>
-                                  <% } %>
-                              <% } %>
-
-                            <% }) %>
-                            <% } %>
+                        
+                          <span>
+                            <i class="fa fa-angle-right"></i> <%=  package.location%>
+                          </span>
                         </p>
                         <div class="d-flex">
                           <h5>Price :&nbsp&nbsp&nbsp</h5>

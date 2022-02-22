@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const express = require('express');
 const cors = require("cors");
-
+const PORT = process.env.PORT
 require('express-async-errors');
 const cookieSession = require('cookie-session');
 
@@ -23,7 +26,7 @@ const { NotFoundError } = require('./src/error')
 const app = express();
 
 var corsOptions = {
-  origin: "http://vanraiadventures.in"
+  origin: process.env.URL
 };
 app.use(cors(corsOptions));
 db.sequelize.sync();
@@ -59,14 +62,16 @@ app.get('/', async (req, res) => {
   var packages = [];
   try {
     try {
-      const serviceResponse = await axios.get("http://vanraiadventures.in/api/services/");
+
+      const serviceResponse = await axios.get(`${process.env.URL}/api/services/`);
 
       services = serviceResponse.data.services
     } catch (error) {
       services = []
     }
     try {
-      const packageResponse = await axios.get("http://vanraiadventures.in/api/packages/");
+
+      const packageResponse = await axios.get(`${process.env.URL}/api/packages/`);
 
       packages = packageResponse.data.packages;
     } catch (error) {
@@ -115,7 +120,7 @@ app.all('*', async (req, res) => {
 
 });
 app.use(errorHandler);
-app.listen(5000, () => {
+app.listen(PORT, () => {
 
   console.log("server running at 5000".green);
 })

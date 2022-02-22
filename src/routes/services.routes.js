@@ -47,14 +47,15 @@ const upload = multer({
 serviceRouter.get('/services', async (req, res) => {
 
   try {
-    const response = await axios.get("http://vanraiadventures.in/api/services/");
+
+    const response = await axios.get(`${process.env.URL}/api/services/`);
     res.render('pages/services', {
       page: 'service',
       services: response.data.services,
       error: null
     })
   } catch (error) {
-    console.log(error)
+
     res.render('pages/services', {
       page: 'service',
       payload: null,
@@ -163,7 +164,7 @@ serviceRouter.get('/api/services/', async (req, res) => {
     });
     res.status(200).send({ services });
   } catch (error) {
-    // console.log(error);
+
     throw new DatabaseOperationError("Error to fetch users");
   }
 });
@@ -189,7 +190,7 @@ serviceRouter.get('/api/services/:id', async (req, res) => {
     res.status(200).send({ service })
     // res.status(200).send({ service });
   } catch (error) {
-    console.log(error);
+
     throw new DatabaseOperationError("Error to fetch users");
   }
 
@@ -240,7 +241,7 @@ serviceRouter.get('/vanrai-admin/updateService/:id', currentUser, requireAuth, a
 
   try {
 
-    const response = await axios.get(`http://vanraiadventures.in/api/services/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
+    const response = await axios.get(`${process.env.URL}/api/services/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
     res.render('pages/adminPages/updateService', {
       successMessage: req.query?.successMessage || null,

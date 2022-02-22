@@ -36,11 +36,16 @@ bookingRouter.post('/vanrai-admin/bookings',
   currentUser, requireAuth, async (req, res) => {
     const { package_name, package_id, name, email, phone, people, date, price } = req.body;
     const status = "waiting"
-    const myMomentObject = moment(date, 'MM-DD-YYYY').toDate()
-    const formatedDate = moment(myMomentObject).format('YYYY-MM-DD');
+    var myMomentObject = null;
+    var formatedDate = null;
+    if (date) {
+      myMomentObject = moment(date, 'MM-DD-YYYY').toDate()
+      formatedDate = moment(myMomentObject).format('YYYY-MM-DD');
+    }
+
 
     const totalPrice = parseInt(parseInt(people) * parseInt(price));
-    console.log(totalPrice);
+
     const newBooking = {
       name,
       email,

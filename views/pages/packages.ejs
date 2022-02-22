@@ -42,24 +42,26 @@
       />
       <div class="pkg-recommended-description-box">
         <h3 class="pkg-recommended-title"><%= package.name %></h3>
-        <p class="pkg-text-highlight"><%= package.location %></p>
+      
         <p class="pkg-text-gray">
-          <%= package.description.substring(0,130) %>
+          <%= package.description.substring(0,200) %>
           <a href="#">...read more</a>
         </p>
-        <p class="pkg-text-highlight">Duration : 2D & 3N</p>
-        <p class="pkg-text-highlight">Start : <%= moment(package.start_date).format( 'MMM-DD-YYYY') %>
-        </p>
-        <p class="pkg-text-highlight">End : <%= moment(package.end_date).format( 'MMM-DD-YYYY') %></p>
+        <p class="pkg-text-highlight"> <i class="fa fa-map-marker" aria-hidden="true" ></i>
+          <%= package.location %></p>
+                  <p class="pkg-text-highlight"><i class="fa fa-clock"></i>   2D & 3N</p>
+
         <div class="button-container d-flex">
           <a class="btn-solid-reg page-scroll" href="/package/<%= package.package_id%>"
-            >DETAILS / BOOK</a
+            >Enquire / Book</a
           >
           
         </div>
+        
       </div>
-      <a href="#" class="pkg-recommended-price-box">
-        <p class="pkg-recommended-price">₹<%= package.price %></p>
+      <a  class="pkg-recommended-price-box">
+        <p class="pkg-recommened-price "><b style="color: aliceblue;" >   ₹ <%= package.price %></p></b>
+       
       </a>
     </div>
     <% }) %>

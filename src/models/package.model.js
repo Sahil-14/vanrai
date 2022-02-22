@@ -36,8 +36,12 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     },
     description: {
-      type: Sequelize.STRING(500),
+      type: Sequelize.STRING(5000),
       allowNull: false
+    },
+    itinerary: {
+      type: Sequelize.STRING(5000),
+      allowNull: true
     },
     isrecommended: {
       type: Sequelize.BOOLEAN,

@@ -25,7 +25,7 @@ dateRouter.get('/api/dates/', auth, requireAuth, async (req, res) => {
     });
     res.status(200).send({ dates });
   } catch (error) {
-    console.log(error)
+
     throw new DatabaseOperationError("Error to fetch dates");
   }
 })
@@ -87,7 +87,7 @@ dateRouter.post('/vanrai-admin/updateDate/:id',
   requireAuth,
   async (req, res) => {
     const { total_seats, available_seats } = req.body
-    console.log((parseInt(available_seats)))
+
     try {
       const updatedFeatures = {
         total_seats,

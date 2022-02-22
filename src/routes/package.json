@@ -1,7 +1,7 @@
 {
   "name": "vanrai",
   "version": "1.0.0",
-  "description": "vanrai advantures",
+  "description": "vanrai adventures",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
