@@ -36,7 +36,7 @@
             class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100"
           >
          
-            <a class="navbar-brand" href="#"
+            <a class="navbar-brand" href="/"
               ><img src="../images/inteuron.png" alt="logo"
             /></a>
             <button
@@ -124,6 +124,12 @@
       <a class="nav-link" href="/vanrai-admin/packages">
         <i class="mdi mdi-package menu-icon"></i>
         <span class="menu-title">Packages</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/vanrai-admin/gallery">
+        <i class="mdi mdi-camera menu-icon"></i>
+        <span class="menu-title">Gallery</span>
       </a>
     </li>
     <% if(currentUser?.isadmin == 1){ %>
@@ -256,9 +262,9 @@
                   id="price"
                   name="price"
                   placeholder="Price"
-                  data-error="You provide numeric value"
-                  minlength="1"
-                  required
+           
+           
+                  
                 />
                 <!-- Error -->
                 <div class="help-block with-errors text-danger"></div>
@@ -417,6 +423,18 @@
                   Recommended Package ? (To display on homepage of website)</span>
                 </label>
               </div>
+            </div>
+            <div class="form-group">
+              <label for="packageName">Package video</label>
+              <input
+                type="text"
+                class="form-control"
+                id="video"
+                name="video"
+                placeholder="video link"
+                
+              />
+
             </div>
               <div class="form-group">
                 <label for="servimage">Package Image</label>

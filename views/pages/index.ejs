@@ -1,6 +1,6 @@
 <%- include('../partials/header')%>
     <!-- Header -->
-    <header id="header" class="header">
+    <header id="header" class="header" style="padding-top: 56px;">
       <div class="header-content">
         <div class="container">
           <div class="row">
@@ -164,19 +164,18 @@
                           <span>
                             <i class="fa fa-angle-right"></i> <%= package.duration %>
                           </span>
-    
-                         
                         </p>
-                        <p>
-                        
+                        <p>  
                           <span>
                             <i class="fa fa-angle-right"></i> <%=  package.location%>
                           </span>
                         </p>
-                        <div class="d-flex">
-                          <h5>Price :&nbsp&nbsp&nbsp</h5>
-                          <h5>₹.<%= package.price %>/-</h5>
-                        </div>
+                        <% if(package.price){ %>
+                          <div class="d-flex">
+                            <h5>Price :&nbsp&nbsp&nbsp</h5>
+                            <h5>₹.<%= package.price %>/-</h5>
+                          </div>
+                        <% } %>
                       </div>
                       <div class="mt-2">
                         <a class="btn-solid-lg page-scroll" href="/package/<%= package.package_id%>"

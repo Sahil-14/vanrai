@@ -77,7 +77,6 @@
                 id="profileDropdown"
               >
                 <i class="mdi mdi-account-circle" style="font-size: 30px"></i>
-                <span class="nav-profile-name"><%=currentUser?.email %></span>
               </a>
               <div
                 class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -131,14 +130,7 @@
                 <span class="menu-title">Gallery</span>
               </a>
             </li>
-            <% if(currentUser?.isadmin == 1){ %>
-            <li class="nav-item">
-              <a class="nav-link" href="/vanrai-admin/users">
-                <i class="mdi mdi-account menu-icon"></i>
-                <span class="menu-title">Users</span>
-              </a>
-            </li>
-            <% } %>
+
             <li class="nav-item">
               <a class="nav-link" href="/vanrai-admin/dates">
                 <i class="mdi mdi-timer menu-icon"></i>
@@ -196,167 +188,118 @@
                   <div class="d-flex align-items-end flex-wrap">
                     <div class="mr-md-3 mr-xl-5">
                       <h2>Welcome back,</h2>
-                      <p class="mb-md-0">Your services dashboard.</p>
                     </div>
                     <div class="d-flex">
                       <i class="mdi mdi-home text-muted hover-cursor"></i>
                       <p class="text-muted mb-0 hover-cursor">
                         &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
                       </p>
-                      <p class="text-primary mb-0 hover-cursor">Services</p>
+                      <p class="text-primary mb-0 hover-cursor">
+                        user / update
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 grid-margin">
-                <div class="text-center">
-                  <a class="btn btn-primary" href="/vanrai-admin/createService"
-                    >Add New Service</a
-                  >
-                </div>
-
-                <% if(successMessage != null){ %>
-                <div
-                  class="alert alert-success alert-dismissible fade show mt-3"
-                  role="alert"
-                >
-                  <strong class="text-center"><%= successMessage%></strong>
-                  <a
-                    type="button"
-                    class="close"
-                    aria-label="Close"
-                    href="/vanrai-admin/services"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </a>
-                </div>
-                <% }%> <% if(errorMessage != null){ %>
-                <div
-                  class="alert alert-danger alert-dismissible fade show mt-3"
-                  role="alert"
-                >
-                  <strong class="text-center"><%= errorMessage %></strong>
-                  <a
-                    type="button"
-                    class="close"
-                    aria-label="Close"
-                    href="/vanrai-admin/services"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </a>
-                </div>
-                <% }%>
-              </div>
-
-              <% if(error != null){%>
+              <% if(error != null){ %>
               <div class="col-lg-12 heading-section text-center p-5">
                 <h2 class="section-title m-5">
                   Error <i class="fas fa-exclamation-triangle"></i>
                 </h2>
                 <p class="text-danger"><%= error %></p>
               </div>
-              <% } else { %> <% if(services?.length == 0){ %>
-
-              <div
-                class="alert alert-info alert-dismissible fade show mt-3"
-                role="alert"
-              >
-                <strong class="text-center"
-                  >Services not present .Please add service</strong
-                >
-                <a
-                  type="button"
-                  class="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </a>
-              </div>
-
               <% }else{ %>
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
+              <div class="col-12 grid-margin">
+                <div class="card mx-5">
                   <div class="card-body">
-                    <h4 class="card-title">Services</h4>
+                    <h4 class="card-title">Create Image</h4>
+                    <form
+                      class="forms-sample"
+                      role="form"
+                      data-toggle="validator"
+                      id="userUpdateForm"
+                      method="post"
+                      action="/vanrai-admin/createImage"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="form-group">
+                        <!-- Error -->
+                        <div class="help-block with-errors text-danger"></div>
+                      </div>
 
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>Image</th>
-                            <th>Service name</th>
-
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th class="text-center">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <% if(services?.length > 0){ %> <%
-                          services.forEach((service,index) => { %>
-                          <tr>
-                            <td class="py-1">
-                              <img
-                                src="/api/services/image/<%= service?.service_id%>"
-                                alt="image"
-                              />
-                            </td>
-                            <td><%= service?.name%></td>
-                            <td>
-                              <%= service?.description.substring(0,15)%>....
-                            </td>
-                            <td>₹ <%= service?.price%></td>
-
-                            <td class="text-center">
-                              <!-- <button class="btn btn-success">View</button> -->
-                              <a
-                                class="btn btn-info"
-                                href="/vanrai-admin/updateService/<%= service?.service_id%>"
-                                >Update</a
-                              >
-                              <a
-                                class="btn btn-danger"
-                                href="/vanrai-admin/deleteService/<%= service?.service_id%>"
-                                >Delete</a
-                              >
-                            </td>
-                          </tr>
+                      <div class="form-group">
+                        <label for="userEmail">Package</label><br />
+                        <select
+                          class="form-select form-select-lg mb-3 col-md-4 p-2"
+                          name="package"
+                        >
+                          <option value="other">other</option>
+                          <% if(packages?.length > 0){ %> <%
+                          packages.forEach((package) => { %>
+                          <option
+                            value="<%= package.package_id%>~<%= package.name%>"
+                          >
+                            <%= package.name%>
+                          </option>
                           <% }) %> <% } %>
-                        </tbody>
-                      </table>
-                    </div>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="servimage">Image</label>
+                        <input
+                          type="file"
+                          name="galleryImage"
+                          class="form-control"
+                          placeholder="Starting Price"
+                          data-error="image must be selected"
+                          accept="image/*"
+                          multiple
+                          required
+                        />
+                        <div class="help-block with-errors text-danger"></div>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary mr-2 mt-3">
+                        Submit
+                      </button>
+                      <a class="btn btn-light mt-3" href="/vanrai-admin/users"
+                        >Cancel</a
+                      >
+                    </form>
                   </div>
                 </div>
               </div>
-              <% }%> <% }%>
+              <% } %>
             </div>
           </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
           <%- include('../../partials/adminPartials/adminFooter')%>
+
+          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
     </div>
-
     <!-- plugins:js -->
+    <script src="/../js/jquery.min.js"></script>
     <script src="/../vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
-    <!-- Plugin js for this page-->
 
-    <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="../js/admin/off-canvas.js"></script>
-    <script src="../js/admin/hoverable-collapse.js"></script>
-    <script src="../js/admin/template.js"></script>
+    <script src="/../js/admin/off-canvas.js"></script>
+    <script src="/../js/admin/hoverable-collapse.js"></script>
+    <script src="/../js/admin/template.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="../js/admin/dashboard.js"></script>
-    <script src="../js/admin/data-table.js"></script>
-    <script src="../js/admin/jquery.dataTables.js"></script>
-    <script src="../js/admin/dataTables.bootstrap4.js"></script>
-    <script src="/../js/swiper.min.js"></script>
+
+    <script src="/../js/admin/dataTables.bootstrap4.js"></script>
+
+    <script src="/../js/admin/drag-drop.js"></script>
+    <!-- <script src="../js/admin/file-upload.js"></script> -->
+
+    <script src="/../js/validator.min.js"></script>
   </body>
 </html>

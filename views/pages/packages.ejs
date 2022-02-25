@@ -60,8 +60,9 @@
         
       </div>
       <a  class="pkg-recommended-price-box">
-        <p class="pkg-recommened-price "><b style="color: aliceblue;" >   ₹ <%= package.price %></p></b>
-       
+        <% if(package.price){ %>
+          <p class="pkg-recommened-price "><b style="color: aliceblue;" >   ₹ <%= package.price %></p></b>
+        <% } %>
       </a>
     </div>
     <% }) %>

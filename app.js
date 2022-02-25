@@ -14,7 +14,7 @@ const { contactRouter } = require('./src/routes/contact.routes')
 const { adminRouter } = require('./src/routes/admin.routes')
 const { dateRouter } = require('./src/routes/dates.routes')
 const { bookingRouter } = require('./src/routes/booking.routes')
-
+const { galleryRouter } = require('./src/routes/gallery.routes');
 const { errorHandler } = require('./src/middleware/errorHandler')
 const db = require("./src/models");
 
@@ -54,6 +54,7 @@ app.use(contactRouter);
 app.use(adminRouter)
 app.use(dateRouter)
 app.use(bookingRouter)
+app.use(galleryRouter)
 app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {

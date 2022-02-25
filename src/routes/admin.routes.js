@@ -6,6 +6,7 @@ const Users = db.users;
 const Dates = db.dates;
 const Messages = db.messages
 const Bookings = db.bookings;
+const Gallery = db.gallery;
 const { validateRequest } = require('../middleware/validateRequest');
 const { BadRequestError, DatabaseOperationError, NotFoundError } = require('../error');
 const axios = require('axios');
@@ -15,6 +16,7 @@ const adminRouter = express.Router();
 
 const { currentUser } = require('../middleware/currentUser');
 const { requireAuth } = require('../middleware/requireAuth');
+
 
 
 
@@ -187,7 +189,7 @@ adminRouter.get('/vanrai-admin/dates', currentUser, requireAuth, async (req, res
         package_name: req.query?.package_name ? req.query?.package_name : uniquePackages
       }
     });
-   
+
     res.render('pages/adminPages/dates', {
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
@@ -235,6 +237,7 @@ adminRouter.get('/vanrai-admin/bookings', currentUser, requireAuth, async (req, 
       })
     }
 
+
     if (packages.length > 0) {
       uniquePackages = packages.filter((item, index, self) => {
         return self.indexOf(item) === index
@@ -245,7 +248,7 @@ adminRouter.get('/vanrai-admin/bookings', currentUser, requireAuth, async (req, 
         return self.indexOf(item) === index
       })
     }
- 
+
 
 
     const bookings = await Bookings.findAll({
@@ -280,6 +283,44 @@ adminRouter.get('/vanrai-admin/bookings', currentUser, requireAuth, async (req, 
 })
 /*******************************
  * ------- 7.bookings --------*
+ *******************************/
+
+
+
+/*******************************
+ * ------- 8.Gallery --------*
+ *******************************/
+adminRouter.get('/vanrai-admin/gallery', currentUser, requireAuth, async (req, res) => {
+  const currentUser = req.currentUser
+  var uniquePackages = [];
+  var packages = []
+  try {
+
+    const Images = await Gallery.findAll({});
+
+    res.render('pages/adminPages/gallery', {
+      successMessage: req.query?.successMessage || null,
+      errorMessage: req.query?.errorMessage || null,
+      Images,
+      error: null,
+      uniquePackages,
+      currentUser
+    })
+  } catch (error) {
+    console.log(error);
+    res.render('pages/adminPages/gallery', {
+      successMessage: req.query?.successMessage || null,
+      errorMessage: req.query?.errorMessage || null,
+      Images: null,
+      uniquePackages: null,
+      error: "Error to fetch images .Please try ",
+      currentUser
+    })
+  }
+
+})
+/*******************************
+ * ------- 8.Gallery --------*
  *******************************/
 module.exports = {
   adminRouter

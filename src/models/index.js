@@ -30,7 +30,7 @@ db.packageHighlights = require("./pacakgeHighlights.model")(sequelize, Sequelize
 db.ttc = require('./ttc.model')(sequelize, Sequelize);
 db.wwg = require('./wwg.model')(sequelize, Sequelize);
 db.wwd = require('./wwd.model')(sequelize, Sequelize);
-
+db.gallery = require('./gallery.model')(sequelize, Sequelize);
 db.bookings = require('./booking.model')(sequelize, Sequelize);
 db.dates = require('./dates.model')(sequelize, Sequelize);
 db.messages = require('./messages.model')(sequelize, Sequelize)
@@ -61,7 +61,8 @@ db.wwg.belongsTo(db.packages, { foreignKey: 'package_id' });
 db.packages.hasMany(db.wwd, { foreignKey: 'package_id' });
 db.wwd.belongsTo(db.packages, { foreignKey: 'package_id' });
 
-
+db.packages.hasMany(db.gallery, { foreignKey: 'package_id' });
+db.gallery.belongsTo(db.packages, { foreignKey: 'package_id' });
 
 db.packages.sync();
 db.packageHighlights.sync();
@@ -70,6 +71,7 @@ db.dates.sync();
 db.ttc.sync();
 db.wwg.sync();
 db.wwd.sync();
+db.gallery.sync();
 
 
 

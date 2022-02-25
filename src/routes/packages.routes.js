@@ -127,16 +127,13 @@ packageRouter.post('/vanrai-admin/createPackage',
     body("duration")
       .isLength({ min: 1, max: 255 })
       .withMessage("Duration must be between 4 to 255 characters"),
-    body("price")
-      .isInt({ min: 0 })
-      .withMessage("Price must be grater of equal to 0"),
     body("description")
       .isLength({ min: 1, max: 5000 })
       .withMessage("description must be between 1 to 5000 characters")
   ],
   validateRequest,
   async (req, res) => {
-    const { name, location, duration, price, description, itinerary, highlights, thingsToCarry, whatWeGive, whatWeDont, dates, isrecommended } = req.body;
+    const { name, location, duration, price, description, itinerary, highlights, thingsToCarry, whatWeGive, whatWeDont, dates, isrecommended, video } = req.body;
     var start_date = null;
     var end_date = null;
     var packageDates = null;
@@ -164,8 +161,9 @@ packageRouter.post('/vanrai-admin/createPackage',
         duration,
         start_date,
         end_date,
-        price,
+        price: price ? price : null,
         image: buffer,
+        video: video ? video : null,
         itinerary: itinerary ? itinerary : null,
         description,
         isrecommended: isrecommended ? 1 : 0
@@ -439,9 +437,7 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
     body("duration")
       .isLength({ min: 1, max: 255 })
       .withMessage("Duration must be between 4 to 255 characters"),
-    body("price")
-      .isInt({ min: 0 })
-      .withMessage("Price must be grater of equal to 0"),
+
     body("description")
       .isLength({ min: 5, max: 5000 })
       .withMessage("description must be between 5 to 500 characters")
@@ -449,7 +445,7 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
   validateRequest,
   async (req, res) => {
     const package_id = req.params.id;
-    const { name, location, duration, price, description, highlights, thingsToCarry, whatWeGive, whatWeDont, itinerary, isrecommended, dates } = req.body;
+    const { name, location, duration, price, description, highlights, thingsToCarry, whatWeGive, whatWeDont, itinerary, isrecommended, dates, video } = req.body;
     var start_date = null;
     var end_date = null;
     var packageDates = null;
@@ -477,8 +473,9 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
         duration,
         start_date,
         end_date,
-        price,
+        price: price ? price : null,
         description,
+        video: video ? video : null,
         itinerary: itinerary ? itinerary : null,
         isrecommended: isrecommended ? 1 : 0
       }
@@ -577,7 +574,6 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
           }
         }
 
-
         res.redirect(url.format({
           pathname: "/vanrai-admin/packages",
           query: {
@@ -595,7 +591,7 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
 
 
     } catch (error) {
-
+      console.log(error);
       if (error instanceof BadRequestError) {
         err = `Package with name =${name} already exist`
       } else if (error instanceof NotFoundError) {
@@ -607,7 +603,7 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
         pathname: "/vanrai-admin/packages",
         query: {
           "successMessage": null,
-          "errorMessage": err,
+          "errorMessage": error,
         }
       }));
     }

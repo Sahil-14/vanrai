@@ -11,6 +11,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false
     },
+    video: {
+      type: Sequelize.STRING(1000),
+      allowNull: true
+    },
     location: {
       type: Sequelize.STRING,
       allowNull: false
@@ -33,7 +37,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     price: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     description: {
       type: Sequelize.STRING(5000),

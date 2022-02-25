@@ -68,15 +68,15 @@
     <%- include('../partials/navbar')%>
 
 <div class="icon-bar">
-  <a href="#" class="facebook"><i class="fab fa-facebook"></i></a> 
+  <a href="<%= package.video ? package.video : '#'%>" class="facebook"><i class="fa fa-play-circle"></i></a> 
   <a href="/contact" class="instagram"><i class="fa fa-phone"></i></a> 
-  <a href="#" class="phone"><i class="fab fa-google"></i></a> 
+  <a href="/gallery" class="phone"><i class="fa fa-camera"></i></a> 
   
 </div>
 <header class="header-2" 
 style=" background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
       url('/api/packages/image/<%= package.package_id%>') center center no-repeat;
-      background-size: cover;
+      background-size: 100% 100%;
       height: 500px;">
   <div class="header-content2">
     <div class="container">
@@ -127,113 +127,146 @@ style=" background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
  <!-- About -->
  <div class="counter py-5">
   <div class="container">
+
+
+      <div class="row ">
+          <div >
+              <div class="tab" role="tabpanel">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class=" "><a  class="tab_a" href="#itinerary" >Overview</a></li>
+
+                    <% if(package.itinerary){ %>
+                      <li role="presentation" class=" "><a  class="tab_a" href="#itinerary" >Itinerary</a></li>
+                     <% } %>
+                     <% if(package.packageHighlights.length > 0){ %>
+                      <li role="presentation"><a class="tab_a " href="#eventdetails" >Event Details</a></li>
+                     <% } %>
+                     <% if(package.ttcs.length > 0){ %>
+                      <li role="presentation"><a class="tab_a"  href="#thingstocarry" >Things to carry</a></li>
+                    <% } %>
+                    <% if(package.wwgs.length > 0 || package.wwds?.length > 0){ %>
+                      <li role="presentation"><a class="tab_a"  href="#whatwegivedont" >What we give/don't</a></li>
+
+                      <% }%>
+                    </ul>
+                  <!-- Tab panes -->
+                  <div class="col-lg-12 col-xl-12 mt-5">
+                    <div class="text-container">
+                      <h1 class="text-capitalize mb-5" style="letter-spacing: 1px;word-wrap: break-word;font-size: 36px; "><%= package.name%></h1>
+                      
+                    <h2 class="font-lg " style="color:#14bf98">Overview</h2>
+                     <div class="row">
+                       <div class="col-lg-9 col-sm-6">
+                        <p style="white-space:pre-line ;margin-top: -20px;" >
+                          <%- package.description%>
+                        </p>
+                       </div>
+                       <div class="col-lg-3 col-sm-6 mb-5">
+                        <div class="card">
+                         
+                          <div class="card-body">
+                            <p class="" ><i class="fa fa-map-marker"  style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%= package.location%></p>
+            
+                            <p class="" ><i class="fa fa-clock"  style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%= package.duration%></p>
+                            <p class="" ><i class="fa fa-phone"  style="color:#c66995"></i>&nbsp;&nbsp; 8265078592 , <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9421590719,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9322570168</p>
+            
+                            <% if(package.price){ %>
+                              <h3 class="text-capitalise" style="letter-spacing: 1px;">Price : &nbsp;&nbsp;&nbsp;&nbsp;₹<%= package.price%></h2>
+                            <% } %>
+                          
+                          </div>
+                         
+                          <div class="button-container text-center" style="margin-bottom: -20px;">
+                            <a class="btn-solid-reg page-scroll" style="z-index: 1;background-color: #14bf98;color: white;" data-toggle="modal" data-target="#elegantModalForm">Enquire / Book</a>
+                          </div>
+                          <!-- end of button-container -->
+                        </div>
+                       </div>
+                     </div>
+            
+                    <% if(package.itinerary){ %>
+                      <h2 id="itinerary" class="mt-3" style="color:#14bf98">Itinerary</h2>
+                      <div class="row">
+                       <div class="col-lg-9 col-sm-6">
+                        <p style="white-space:pre-line ;margin-top: -20px;" >
+                          <%- package.itinerary%>
+                        </p>
+                       </div>
+                       <div class="col-lg-3 col-sm-6 mb-5">
+                       </div>
+                     </div>
+                     <% } %>
+                    <% if(package.packageHighlights.length > 0){ %>
+                      <h2 class="mt-3" id="eventdetails" style="color:#14bf98">Event Details</h2>
+                      <ul class="list-unstyled li-space-lg">
+                          <% package.packageHighlights.forEach((highlight,index) => { %>
+                        <li class="media">
+                            &nbsp;&nbsp;&nbsp;<i class="fas fa-square " style="color:#c66995"></i>
+                          <div class="media-body">
+                            <%= highlight.name %>
+                          </div>
+                        </li>
+                        <% }) %>
+                      </ul>
+                    <% } %>
+                    <% if(package.ttcs.length > 0){ %>
+                      <h2 id="thingstocarry" class="font-lg " style="color:#14bf98">Things to carry</h2>
+                      <ul class="list-unstyled li-space-lg">
+                          <% package.ttcs.forEach((item,index) => { %>
+                            <li>
+                              &nbsp;&nbsp;&nbsp;<i class="fas fa-square" style="color:#c66995"></i>
+                              &nbsp;&nbsp;<%= item.name%>
+                            </li>
+                          <% }) %>   
+                      </ul>
+                    <% } %>
+                    <% if(package.wwgs.length > 0 || package.wwds.length){ %>
+                      <h2 id="whatwegivedont" class="font-lg " style="color:#14bf98">What we'll give /What we won't</h2>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                          <ul class="list-unstyled li-space-lg">
+                            <% if(package.wwgs.length > 0){ %>
+                                <% package.wwgs.forEach((item,index) => { %>
+                                  <li>
+                                    <i class="fa fa-check text-success" ></i>
+                                    &nbsp;&nbsp;&nbsp;<%= item.name%>
+                                  </li>
+                                <% }) %>
+                            <% } %>
+                          
+                          </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <ul class="list-unstyled li-space-lg">
+                            <% if(package.wwds.length > 0){ %>
+                                <% package.wwds.forEach((item,index) => { %>
+                                  <li>
+                                    <i class="text-bold text-danger" >X</i>
+                                    &nbsp;&nbsp;&nbsp;<%= item.name%>
+                                  </li>
+                                <% }) %>
+                            <% } %>
+                          
+                          </ul>
+                        </div>
+                      </div>
+                    <% } %>
+                      <div id="mydiv" data-test=<%= availableDates %>></div>
+            
+                      <!-- end of counter -->
+                    </div>
+                    <!-- end of text-container -->
+                  </div>
+              </div>
+          </div>
+    
+  </div>
+
     <div class="row">
      
       <!-- end of col -->
-      <div class="col-lg-12 col-xl-12">
-        <div class="text-container">
-          <h1 class="text-capitalize mb-5" style="letter-spacing: 1px;word-wrap: break-word;font-size: 36px; "><%= package.name%></h1>
-          
-        <h2 class="font-lg " style="color:#14bf98">Overview</h2>
-         <div class="row">
-           <div class="col-lg-9 col-sm-6">
-            <p style="white-space:pre-line ;margin-top: -20px;" >
-              <%- package.description%>
-            </p>
-           </div>
-           <div class="col-lg-3 col-sm-6 mb-5">
-            <div class="card">
-             
-              <div class="card-body">
-                <p class="" style=""><i class="fa fa-map-marker"  style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%= package.location%></p>
-
-                <p class="" style=""><i class="fa fa-clock"  style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%= package.duration%></p>
-                <p class="" style=""><i class="fa fa-phone"  style="color:#c66995"></i>&nbsp;&nbsp; 8265078592 , <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9421590719,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9322570168</p>
-
-
-                  <h3 class="text-capitalise" style="letter-spacing: 1px;">Price : &nbsp;&nbsp;&nbsp;&nbsp;₹<%= package.price%></h2>
-              
-              </div>
-             
-              <div class="button-container text-center" style="margin-bottom: -20px;">
-                <a class="btn-solid-reg" style="color: aliceblue;" data-toggle="modal" data-target="#elegantModalForm">Enquire / Book</a>
-              </div>
-              <!-- end of button-container -->
-            </div>
-           </div>
-         </div>
-
-         <h2 class="mt-3" style="color:#14bf98">Itinerary</h2>
-         <div class="row">
-          <div class="col-lg-9 col-sm-6">
-           <p style="white-space:pre-line ;margin-top: -20px;" >
-             <%- package.itinerary%>
-           </p>
-          </div>
-          <div class="col-lg-3 col-sm-6 mb-5">
-          </div>
-        </div>
-        <% if(package.packageHighlights.length > 0){ %>
-          <h2 class="mt-3" style="color:#14bf98">Event Details</h2>
-          <ul class="list-unstyled li-space-lg">
-              <% package.packageHighlights.forEach((highlight,index) => { %>
-            <li class="media">
-                &nbsp;&nbsp;&nbsp;<i class="fas fa-square " style="color:#c66995"></i>
-              <div class="media-body">
-                <%= highlight.name %>
-              </div>
-            </li>
-            <% }) %>
-          </ul>
-        <% } %>
-        <% if(package.ttcs.length > 0){ %>
-          <h2 class="font-lg " style="color:#14bf98">Things to carry</h2>
-          <ul class="list-unstyled li-space-lg">
-              <% package.ttcs.forEach((item,index) => { %>
-                <li>
-                  &nbsp;&nbsp;&nbsp;<i class="fas fa-square" style="color:#c66995"></i>
-                  &nbsp;&nbsp;<%= item.name%>
-                </li>
-              <% }) %>   
-          </ul>
-        <% } %>
-        <% if(package.wwgs.length > 0 || package.wwds.length){ %>
-          <h2 class="font-lg " style="color:#14bf98">What we'll give /What we won't</h2>
-          <div class="row">
-            <div class="col-md-6 col-sm-6">
-              <ul class="list-unstyled li-space-lg">
-                <% if(package.wwgs.length > 0){ %>
-                    <% package.wwgs.forEach((item,index) => { %>
-                      <li>
-                        <i class="fa fa-check text-success" ></i>
-                        &nbsp;&nbsp;&nbsp;<%= item.name%>
-                      </li>
-                    <% }) %>
-                <% } %>
-              
-              </ul>
-            </div>
-            <div class="col-md-6 col-sm-6">
-              <ul class="list-unstyled li-space-lg">
-                <% if(package.wwds.length > 0){ %>
-                    <% package.wwds.forEach((item,index) => { %>
-                      <li>
-                        <i class="text-bold text-danger" >X</i>
-                        &nbsp;&nbsp;&nbsp;<%= item.name%>
-                      </li>
-                    <% }) %>
-                <% } %>
-              
-              </ul>
-            </div>
-          </div>
-        <% } %>
-          <div id="mydiv" data-test=<%= availableDates %>></div>
-
-          <!-- end of counter -->
-        </div>
-        <!-- end of text-container -->
-      </div>
+      
       <!-- end of col -->
     </div>
     <!-- end of row -->
