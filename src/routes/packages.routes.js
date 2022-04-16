@@ -38,7 +38,8 @@ const Op = db.Sequelize.Op;
 const upload = multer({
 
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/))
+    {
       return cb(new Error("file must be a image"));
     }
     cb(undefined, true);
@@ -50,7 +51,8 @@ const upload = multer({
  * -- package page --------*
  *******************************/
 packageRouter.get('/packages', async (req, res) => {
-  try {
+  try
+  {
 
     const response = await axios.get(`${process.env.URL}/api/packages/`);
 
@@ -60,7 +62,8 @@ packageRouter.get('/packages', async (req, res) => {
       moment,
       error: null
     })
-  } catch (error) {
+  } catch (error)
+  {
 
     res.render('pages/packages', {
       page: 'packages',
@@ -73,7 +76,8 @@ packageRouter.get('/packages', async (req, res) => {
  * -- single package page  \\ package booking page------*
  *******************************************************/
 packageRouter.get('/package/:id', async (req, res) => {
-  try {
+  try
+  {
 
     const response = await axios.get(`${process.env.URL}/api/packages/${req.params.id}`);
 
@@ -84,9 +88,8 @@ packageRouter.get('/package/:id', async (req, res) => {
       availableDates.push(formatedDate);
     })
 
-
     res.render('pages/packageBooking', {
-      page: 'packagesBooking',
+      page: 'packages',
       package: response.data.package,
       availableDates,
       successMessage: req.query?.successMessage || null,
@@ -94,7 +97,8 @@ packageRouter.get('/package/:id', async (req, res) => {
       moment,
       error: null
     })
-  } catch (error) {
+  } catch (error)
+  {
 
     res.render('pages/packageBooking', {
       successMessage: req.query?.successMessage || null,
@@ -137,7 +141,8 @@ packageRouter.post('/vanrai-admin/createPackage',
     var start_date = null;
     var end_date = null;
     var packageDates = null;
-    if (dates) {
+    if (dates)
+    {
       packageDates = dates.split(",")
       var mnDate = packageDates.reduce(function (a, b) {
         return a < b ? a : b;
@@ -149,14 +154,17 @@ packageRouter.post('/vanrai-admin/createPackage',
       end_date = mxDate;
     }
 
-    try {
+    try
+    {
       const existingPackage = await Packages.findOne({ where: { name }, attributes: ['package_id', 'name'] });
-      if (existingPackage) {
+      if (existingPackage)
+      {
         throw new BadRequestError('Package aleady exists.');
       }
       const buffer = req.file.buffer
       const newPackage = {
-        name: name.toLowerCase(),
+
+        name: name.trim().toLowerCase(),
         location,
         duration,
         start_date,
@@ -174,8 +182,10 @@ packageRouter.post('/vanrai-admin/createPackage',
       const package_id = package.package_id;
       //save highlights (event details)
       var highlightsArray = [];
-      if (highlights) {
-        if (highlights instanceof Array) {
+      if (highlights)
+      {
+        if (highlights instanceof Array)
+        {
           highlights.map((item) => {
             highlightsArray.push({
               name: item,
@@ -183,14 +193,17 @@ packageRouter.post('/vanrai-admin/createPackage',
             })
           })
           await PackageHighlights.bulkCreate(highlightsArray);
-        } else {
+        } else
+        {
           await PackageHighlights.create({ name: highlights, package_id });
         }
       }
       //save ttc
       var thingsToCarryArray = [];
-      if (thingsToCarry) {
-        if (thingsToCarry instanceof Array) {
+      if (thingsToCarry)
+      {
+        if (thingsToCarry instanceof Array)
+        {
           thingsToCarry.map((item) => {
             thingsToCarryArray.push({
               name: item,
@@ -199,15 +212,18 @@ packageRouter.post('/vanrai-admin/createPackage',
           })
 
           await Ttc.bulkCreate(thingsToCarryArray);
-        } else {
+        } else
+        {
           await Ttc.create({ name: thingsToCarry, package_id });
         }
       }
 
       //what we give
       var whatWeGiveArray = [];
-      if (whatWeGive) {
-        if (whatWeGive instanceof Array) {
+      if (whatWeGive)
+      {
+        if (whatWeGive instanceof Array)
+        {
           whatWeGive.map((item) => {
             whatWeGiveArray.push({
               name: item,
@@ -215,15 +231,18 @@ packageRouter.post('/vanrai-admin/createPackage',
             })
           })
           await Wwg.bulkCreate(whatWeGiveArray);
-        } else {
+        } else
+        {
           await Wwg.create({ name: whatWeGive, package_id });
         }
       }
 
       //what we dont
       var whatWeDontArray = [];
-      if (whatWeDont) {
-        if (whatWeDont instanceof Array) {
+      if (whatWeDont)
+      {
+        if (whatWeDont instanceof Array)
+        {
           whatWeDont.map((item) => {
             whatWeDontArray.push({
               name: item,
@@ -232,14 +251,17 @@ packageRouter.post('/vanrai-admin/createPackage',
           })
 
           await Wwd.bulkCreate(whatWeDontArray);
-        } else {
+        } else
+        {
           await Wwd.create(whatWeDont);
         }
       }
 
       var splitedDates = [];
-      if (packageDates) {
-        if (packageDates?.length >= 1 && packageDates[0] != "") {
+      if (packageDates)
+      {
+        if (packageDates?.length >= 1 && packageDates[0] != "")
+        {
           packageDates.map((date) => {
             splitedDates.push({
               date,
@@ -260,12 +282,15 @@ packageRouter.post('/vanrai-admin/createPackage',
         }
       }));
 
-    } catch (error) {
+    } catch (error)
+    {
 
       var err = "";
-      if (error instanceof BadRequestError) {
+      if (error instanceof BadRequestError)
+      {
         err = `package already exist with name = ${name}`
-      } else {
+      } else
+      {
         err = "Error to create package";
       }
 
@@ -284,7 +309,8 @@ packageRouter.post('/vanrai-admin/createPackage',
  * -- 2.get all package --------*
  *******************************/
 packageRouter.get('/api/packages/', async (req, res) => {
-  try {
+  try
+  {
     const packages = await Packages.findAll({
       attributes: {
         exclude: ['createdAt', 'updatedAt', 'image']
@@ -295,7 +321,8 @@ packageRouter.get('/api/packages/', async (req, res) => {
       }
     });
     res.status(200).send({ packages })
-  } catch (error) {
+  } catch (error)
+  {
 
     throw new DatabaseOperationError("Error to fetch packages.")
   }
@@ -308,7 +335,8 @@ packageRouter.get('/api/packages/', async (req, res) => {
 packageRouter.get('/api/packages/:id', async (req, res) => {
   const package_id = req.params.id;
 
-  try {
+  try
+  {
     const package = await Packages.findOne({
       where: {
         package_id
@@ -337,12 +365,49 @@ packageRouter.get('/api/packages/:id', async (req, res) => {
     });
 
     res.status(200).send({ package });
-  } catch (error) {
+  } catch (error)
+  {
 
     throw new DatabaseOperationError("Error to fetch users");
   }
 })
+packageRouter.get('/api/packages/formated/:name', async (req, res) => {
+  const name = req.params.name
+  try
+  {
+    const package = await Packages.findOne({
+      where: {
+        name
+      },
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'image']
+      },
+      include: [
+        {
+          model: PackageHighlights,
+          attributes: ['name']
+        },
+        {
+          model: Ttc,
+          attributes: ['name']
+        },
+        {
+          model: Wwg,
+          attributes: ['name']
+        },
+        {
+          model: Wwd,
+          attributes: ['name']
+        }
+      ]
+    });
 
+    res.status(200).send({ package });
+  } catch (error)
+  {
+    throw new DatabaseOperationError("Error to fetch package");
+  }
+})
 /*******************************
  * -- 3.create package     -----*
  *******************************/
@@ -353,9 +418,11 @@ packageRouter.get('/api/packages/:id', async (req, res) => {
  *******************************/
 packageRouter.get('/vanrai-admin/deletePackage/:id', currentUser, requireAuth, async (req, res) => {
   const package_id = req.params.id;
-  try {
+  try
+  {
     const response = await Packages.destroy({ where: { package_id } });
-    if (response == 1) {
+    if (response == 1)
+    {
       res.redirect(url.format({
         pathname: "/vanrai-admin/packages",
         query: {
@@ -363,14 +430,18 @@ packageRouter.get('/vanrai-admin/deletePackage/:id', currentUser, requireAuth, a
           "errorMessage": null,
         }
       }));
-    } else {
+    } else
+    {
       throw new NotFoundError();
     }
-  } catch (error) {
+  } catch (error)
+  {
     let err = ""
-    if (error instanceof NotFoundError) {
+    if (error instanceof NotFoundError)
+    {
       err = "Package not found"
-    } else {
+    } else
+    {
       err = "Error to delete package"
     }
     res.redirect(url.format({
@@ -390,13 +461,15 @@ packageRouter.get('/vanrai-admin/updatePackage/:id', currentUser, requireAuth, a
   const token = req.session?.jwt;
   const currentUser = req.currentUser
 
-  try {
+  try
+  {
 
     const response = await axios.get(`${process.env.URL}/api/packages/${req.params.id}`, { headers: { "Authorization": `Bearer ${token}` } });
 
     const dates = await Dates.findAll({ where: { package_id: req.params.id }, attributes: ['date'] })
     var dateToString = [];
-    if (dates.length > 0) {
+    if (dates.length > 0)
+    {
       dates.forEach((date, index) => {
         dateToString.push(date.date)
       })
@@ -414,7 +487,8 @@ packageRouter.get('/vanrai-admin/updatePackage/:id', currentUser, requireAuth, a
       error: null,
       currentUser
     })
-  } catch (error) {
+  } catch (error)
+  {
     res.render('pages/adminPages/updatePackage', {
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
@@ -449,7 +523,8 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
     var start_date = null;
     var end_date = null;
     var packageDates = null;
-    if (dates) {
+    if (dates)
+    {
       packageDates = dates.split(",")
       var mnDate = packageDates.reduce(function (a, b) {
         return a < b ? a : b;
@@ -461,14 +536,16 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
       end_date = mxDate;
     }
 
-    try {
+    try
+    {
       const existingPackage = await Packages.findOne({ where: { name }, attributes: ['package_id', 'name'] });
-      if (existingPackage && package_id != existingPackage.package_id) {
+      if (existingPackage && package_id != existingPackage.package_id)
+      {
         throw new BadRequestError('Service aleady exists.');
       }
       const newPackage = {
         package_id,
-        name: name.toLowerCase(),
+        name: name.trim().toLowerCase(),
         location,
         duration,
         start_date,
@@ -481,11 +558,14 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
       }
       //update package
       const packageUpdateResponse = await Packages.update(newPackage, { where: { package_id } });
-      if (packageUpdateResponse != 0) {
+      if (packageUpdateResponse != 0)
+      {
         //delete package highlights
         await PackageHighlights.destroy({ where: { package_id } });
-        if (highlights) {
-          if (highlights instanceof Array) {
+        if (highlights)
+        {
+          if (highlights instanceof Array)
+          {
             var highlightsArray = [];
             highlights.map((item) => {
               highlightsArray.push({
@@ -495,7 +575,8 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
             })
             //save package highlights
             await PackageHighlights.bulkCreate(highlightsArray);
-          } else {
+          } else
+          {
             await PackageHighlights.create({
               name: highlights,
               package_id
@@ -503,12 +584,14 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
           }
         }
         // detele existing dates
-        if (dates) {
+        if (dates)
+        {
           await Dates.destroy({ where: { package_id } });
 
           //update dates
           var splitedDates = [];
-          if (packageDates?.length >= 1 && packageDates[0] != "") {
+          if (packageDates?.length >= 1 && packageDates[0] != "")
+          {
 
             packageDates.map((date) => {
               splitedDates.push({
@@ -523,10 +606,12 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
         }
 
         await Ttc.destroy({ where: { package_id } });
-        if (thingsToCarry) {
+        if (thingsToCarry)
+        {
 
           var thingsToCarryArray = [];
-          if (thingsToCarry instanceof Array) {
+          if (thingsToCarry instanceof Array)
+          {
             thingsToCarry.map((item) => {
               thingsToCarryArray.push({
                 name: item,
@@ -535,15 +620,18 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
             })
 
             await Ttc.bulkCreate(thingsToCarryArray);
-          } else {
+          } else
+          {
             await Ttc.create({ name: thingsToCarry, package_id });
           }
         }
 
         await Wwg.destroy({ where: { package_id } });
-        if (whatWeGive) {
+        if (whatWeGive)
+        {
           var whatWeGiveArray = [];
-          if (whatWeGive instanceof Array) {
+          if (whatWeGive instanceof Array)
+          {
             whatWeGive.map((item) => {
               whatWeGiveArray.push({
                 name: item,
@@ -551,14 +639,17 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
               })
             })
             await Wwg.bulkCreate(whatWeGiveArray);
-          } else {
+          } else
+          {
             await Wwg.create({ name: whatWeGive, package_id });
           }
         }
         await Wwd.destroy({ where: { package_id } });
-        if (whatWeDont) {
+        if (whatWeDont)
+        {
           var whatWeDontArray = [];
-          if (whatWeDont instanceof Array) {
+          if (whatWeDont instanceof Array)
+          {
             whatWeDont.map((name) => {
               whatWeDontArray.push({
                 name,
@@ -566,7 +657,8 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
               })
             })
             await Wwd.bulkCreate(whatWeDontArray);
-          } else {
+          } else
+          {
             await Wwd.create({
               name: whatWeDont,
               package_id
@@ -585,18 +677,23 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
 
 
 
-      } else {
+      } else
+      {
         throw new NotFoundError();
       }
 
 
-    } catch (error) {
+    } catch (error)
+    {
       console.log(error);
-      if (error instanceof BadRequestError) {
+      if (error instanceof BadRequestError)
+      {
         err = `Package with name =${name} already exist`
-      } else if (error instanceof NotFoundError) {
+      } else if (error instanceof NotFoundError)
+      {
         err = "Package not found"
-      } else {
+      } else
+      {
         err = "Error to update package";
       }
       res.redirect(url.format({
@@ -613,24 +710,29 @@ packageRouter.post('/vanrai-admin/updatePackage/:id',
  *******************************/
 packageRouter.get('/api/packages/image/:id', async (req, res) => {
   const id = req.params.id;
-  try {
+  try
+  {
     const package = await Packages.findOne({
       where: {
         package_id: id
       },
       attributes: ['image']
     });
-    if (!package) {
+    if (!package)
+    {
       throw new NotFoundError();
     }
 
     res.set('Content-Type', 'image');
     res.status(200).send(package.image);
 
-  } catch (error) {
-    if (error instanceof NotFoundError) {
+  } catch (error)
+  {
+    if (error instanceof NotFoundError)
+    {
       throw new NotFoundError();
-    } else {
+    } else
+    {
       throw new DatabaseOperationError("Error to fetch users");
 
     }
@@ -640,9 +742,11 @@ packageRouter.get('/api/packages/image/:id', async (req, res) => {
 packageRouter.post('/vanrai-admin/packages/image/:id', upload.single("packimage"), async (req, res) => {
   const package_id = req.params.id;
   const image = req.file.buffer
-  try {
+  try
+  {
     const response = await Packages.update({ image }, { where: { package_id } });
-    if (response == 1) {
+    if (response == 1)
+    {
       res.redirect(url.format({
         pathname: `/vanrai-admin/updatePackage/${package_id}`,
         query: {
@@ -650,15 +754,19 @@ packageRouter.post('/vanrai-admin/packages/image/:id', upload.single("packimage"
           "errorMessage": null,
         }
       }));
-    } else {
+    } else
+    {
       throw new NotFoundError();
     }
 
-  } catch (error) {
+  } catch (error)
+  {
     let err = '';
-    if (error instanceof NotFoundError) {
+    if (error instanceof NotFoundError)
+    {
       err = 'Package not found'
-    } else {
+    } else
+    {
       err = 'Error to update image, please try again'
     }
     res.redirect(url.format({

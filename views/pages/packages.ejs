@@ -1,78 +1,78 @@
 <%- include('../partials/header')%>
- <!-- Header -->
- <header class="header-2">
-  <div class="header-content2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="text-container-2">
-            <h1 class="">Packages</h1>
+  <!-- Header -->
+  <header class="header-2">
+    <div class="header-content2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-container-2">
+              <h1 class="">Packages</h1>
+            </div>
           </div>
+          <!-- end of col -->
         </div>
-        <!-- end of col -->
+        <!-- end of row -->
       </div>
-      <!-- end of row -->
+      <!-- end of container -->
     </div>
-    <!-- end of container -->
-  </div>
-  <!-- end of header-content -->
-</header>
+    <!-- end of header-content -->
+  </header>
 
-<!-- packages -->
-<div class="tab-pane fade show active" id="4a">
-  <!-- Current Active Tab WITH "show active" classes in DIV tag -->
-  <!-- error   -->
-<% if(error != null ){%>
-  <div class="col-lg-12 heading-section text-center  p-5">
-    <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
-    <p class="text-danger">
-     <%= error %>
-    </p>
-  </div>
-  <% } else { %>
-  <div class="pkg-recommended-place-wrap">
-
-    <% if(packages.length > 0){ %>
-      <% packages.forEach((package,index) => { %>
-    <div class="pkg-recommended-place">
-      <img
-        src="/api/packages/image/<%= package.package_id%>"
-        alt="Image"
-        class="img-fluid pkg-recommended-img"
-      />
-      <div class="pkg-recommended-description-box">
-        <h3 class="pkg-recommended-title"><%= package.name %></h3>
-      
-        <p class="pkg-text-gray">
-          <%= package.description.substring(0,200) %>
-          <a href="#">...read more</a>
+  <!-- packages -->
+  <div class="tab-pane fade show active" id="4a">
+    <!-- Current Active Tab WITH "show active" classes in DIV tag -->
+    <!-- error   -->
+    <% if(error !=null ){%>
+      <div class="col-lg-12 heading-section text-center  p-5">
+        <h2 class=" section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
+        <p class="text-danger">
+          <%= error %>
         </p>
-        <p class="pkg-text-highlight"> <i class="fa fa-map-marker" aria-hidden="true" ></i>
-          <%= package.location %></p>
-                  <p class="pkg-text-highlight"><i class="fa fa-clock"></i>   2D & 3N</p>
-
-        <div class="button-container d-flex">
-          <a class="btn-solid-reg page-scroll" href="/package/<%= package.package_id%>"
-            >Enquire / Book</a
-          >
-          
-        </div>
-        
       </div>
-      <a  class="pkg-recommended-price-box">
-        <% if(package.price){ %>
-          <p class="pkg-recommened-price "><b style="color: aliceblue;" >   ₹ <%= package.price %></p></b>
-        <% } %>
-      </a>
-    </div>
-    <% }) %>
-    <% } %>
-    
-  </div>
-  <% } %>
-</div>
+      <% } else { %>
+        <div class="pkg-recommended-place-wrap">
 
-<%- include('../partials/footer')%>
+          <% if(packages.length> 0){ %>
+            <% packages.forEach((package,index)=> { %>
+              <div class="pkg-recommended-place">
+                <img src="/api/packages/image/<%= package.package_id%>" alt="Image"
+                  class="img-fluid pkg-recommended-img" />
+                <div class="pkg-recommended-description-box">
+                  <h3 class="pkg-recommended-title text-capitalize">
+                    <%= package.name %>
+                  </h3>
+
+                  <p class="pkg-text-gray">
+                    <%= package.description.substring(0,200) %>
+                      <a href="#">...read more</a>
+                  </p>
+                  <p class="pkg-text-highlight"> <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <%= package.location %>
+                  </p>
+                  <p class="pkg-text-highlight"><i class="fa fa-clock"></i>
+                    <%= package.duration %>
+                  </p>
+
+                  <div class="button-container d-flex">
+                    <a class="btn-solid-reg page-scroll" href="/package/<%= package.package_id%>">Enquire / Book</a>
+                  </div>
+
+                </div>
+                <a class="pkg-recommended-price-box">
+                  <% if(package.price){ %>
+                    <p class="pkg-recommened-price "><b style="color: aliceblue;"> ₹ <%= package.price %>
+                    </p></b>
+                    <% } %>
+                </a>
+              </div>
+              <% }) %>
+                <% } %>
+
+        </div>
+        <% } %>
+  </div>
+
+  <%- include('../partials/footer')%>
     <!-- Scripts -->
     <script src="/js/jquery.min.js"></script>
     <!-- jQuery for Bootstrap's JavaScript plugins -->
@@ -86,5 +86,6 @@
 
     <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="/js/scripts.js"></script>
-  </body>
-</html>
+    </body>
+
+    </html>

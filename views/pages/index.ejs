@@ -1,336 +1,334 @@
 <%- include('../partials/header')%>
-    <!-- Header -->
-    <header id="header" class="header" style="padding-top: 56px;">
-      <div class="header-content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="text-container">
-                <h1 class="text-uppercase">
-                  Vanrai Adventures
-                  <!-- <span id="js-rotating">TEMPLATE, SERVICES, SOLUTIONS</span> -->
-                </h1>
-                <p class="p-heading p-large">
-                  Vanrai adventures is a top advanture company in maharastra,we provide the wide range of trekking packages
-                </p>
-                <!-- <a class="btn-solid-lg page-scroll" href="#intro">DISCOVER</a> -->
-                <div class="button-container">
-                  <a class="btn-solid-reg page-scroll" href="/contact">Contact Us</a>
-                </div>
-              </div>
-            </div>
-            <!-- end of col -->
-          </div>
-          <!-- end of row -->
-        </div>
-        <!-- end of container -->
-      </div>
-      <!-- end of header-content -->
-    </header>
-    <!-- end of header -->
-
-
-
-    <!-- Services -->
-    <div id="services" class="cards-2">
+  <!-- Header -->
+  <header id="header" class="header" style="padding-top: 56px;">
+    <div class="header-content">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 heading-section">
-            <h2 class="section-title">SERVICES</h2>
-            <p class="text-center">
-              Choose The Service Package That Suits Your Needs
-            </p>
-          </div>
-          <!-- end of col -->
-        </div>
-        <!-- end of row -->
-        <div class="row">
           <div class="col-lg-12">
-
-            <% if(error != null){%>
-              <div class="col-lg-12 heading-section text-center  p-5">
-                <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
-                <p class="text-danger">
-                 <%= error %>
-                </p>
-              </div>
-              <% } else { %>
-                <% if(services.length > 0){ %>
-                  <% services.forEach((service,index) => { %>
-                    <% if(index < 3 ){%>
-                         <!-- Card -->
-            <div class="card">
-              <div class="card-image">
-                <img
-                  class="img-fluid"
-                  src="/api/services/image/<%= service.service_id%>"
-                  alt="alternative"
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-title"><%= service.name.substring(0,40) %></h3>
-                <p>
-                  <%= service.description.substring(0,80) %>
-                </p>
-                <ul class="list-unstyled li-space-lg">
-                  <% if(service.highlights.length > 0){ %>
-                    <% service.highlights.forEach((highlight,index) => { %>
-                      <% if(index < 2){%>
-
-                      <li class="media">
-                        <i class="fas fa-square"></i>
-                        <div class="media-body"><%= highlight.name.substring(0,30)%></div>
-                      </li>
-                      <% }%>
-                  <% }) %>
-                  <% } %>
-                 
-               
-                </ul>
-                <p class="price">Starting at <span>₹<%= service.price %></span></p>
-              </div>
+            <div class="text-container">
+              <h1 class="text-uppercase">
+                Vanrai Adventures
+                <!-- <span id="js-rotating">TEMPLATE, SERVICES, SOLUTIONS</span> -->
+              </h1>
+              <p class="p-heading p-large">
+                Vanrai adventures is a top advanture company in maharastra,we provide the wide range of trekking
+                packages
+              </p>
+              <!-- <a class="btn-solid-lg page-scroll" href="#intro">DISCOVER</a> -->
               <div class="button-container">
-                <a class="btn-solid-reg page-scroll" href="/services">DETAILS</a>
+                <a class="btn-solid-reg page-scroll" href="/contact">Contact Us</a>
               </div>
-
-              <!-- end of button-container -->
             </div>
-                      <%}%>
-                    <% }) %>
-                    <% } %>
-                <% } %>          
           </div>
           <!-- end of col -->
-        </div>
-        <div class="button-container">
-          <a
-            class="btn-solid-reg page-scroll text-uppercase"
-            href="/services"
-            >SEE all services<i class="fas fa-arrow-right ml-2"></i
-          ></a>
         </div>
         <!-- end of row -->
       </div>
       <!-- end of container -->
     </div>
-    <!-- end of services -->
+    <!-- end of header-content -->
+  </header>
+  <!-- end of header -->
 
-    <!--sticy background section -->
-    <section id="sticky-background" class="p-5">
-      <div class="dark-overlay">
-        <div class="row" style="height: 100%">
-          <div
-            class="col-md-12 d-flex justify-content-center flex-column align-items-center"
-          >
-            <h1 class="text-uppercase">Travel sahyadri</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              aliquam voluptates qui alias!
-            </p>
-          </div>
+
+
+  <!-- Services -->
+  <div id="services" class="cards-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 heading-section">
+          <h2 class="section-title text-uppercase">SERVICES</h2>
+          <p class="text-center">
+            Choose The Service Package That Suits Your Needs
+          </p>
         </div>
+        <!-- end of col -->
       </div>
-    </section>
+      <!-- end of row -->
+      <div class="row">
+        <div class="col-lg-12">
 
-    <!-- packages -->
-    <div class="tm-section tm-section-pad tm-bg-gray" id="tm-section-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 heading-section">
-            <h2 class="section-title text-center">Packages</h2>
-            <p class="text-center">Choose Package That Suits Your Needs</p>
-          </div>
-          <% if(error != null){%>
+          <% if(error !=null){%>
             <div class="col-lg-12 heading-section text-center  p-5">
               <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
               <p class="text-danger">
-               <%= error %>
+                <%= error %>
               </p>
             </div>
             <% } else { %>
-              <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                <div class="tm-article-carousel">
-
-                <% if(packages.length > 0){ %>
-                     <% packages.forEach((package,index) => { %>
-                  <article class="single-package-item tm-carousel-item">
-                    <img src="/api/packages/image/<%= package.package_id%>" alt="Image" class="img-fluid" />
-                    <div class="single-package-item-txt">
-                      <h3 class="text-uppercase tm-article-title-2" style="word-wrap: break-word;">
-                        <%= package.name.substring(0,48) %>
-                      </h3>
-                      <div class="packages-para">
+              <% if(services.length> 0){ %>
+                <% services.forEach((service,index)=> { %>
+                  <% if(index < 3 ){%>
+                    <!-- Card -->
+                    <div class="card">
+                      <div class="card-image">
+                        <img class="img-fluid" src="/api/services/image/<%= service.service_id%>" alt="alternative" />
+                      </div>
+                      <div class="card-body">
+                        <h3 class="card-title text-capitalize">
+                          <%= service.name.substring(0,40) %>
+                        </h3>
                         <p>
-                          <span>
-                            <i class="fa fa-angle-right"></i> <%= package.duration %>
-                          </span>
+                          <%= service.description.substring(0,80) %>
                         </p>
-                        <p>  
-                          <span>
-                            <i class="fa fa-angle-right"></i> <%=  package.location%>
-                          </span>
-                        </p>
-                        <% if(package.price){ %>
-                          <div class="d-flex">
-                            <h5>Price :&nbsp&nbsp&nbsp</h5>
-                            <h5>₹.<%= package.price %>/-</h5>
-                          </div>
-                        <% } %>
+                        <ul class="list-unstyled li-space-lg">
+                          <% if(service.highlights.length> 0){ %>
+                            <% service.highlights.forEach((highlight,index)=> { %>
+                              <% if(index < 2){%>
+
+                                <li class="media">
+                                  <i class="fas fa-square"></i>
+                                  <div class="media-body">
+                                    <%= highlight.name.substring(0,30)%>
+                                  </div>
+                                </li>
+                                <% }%>
+                                  <% }) %>
+                                    <% } %>
+
+
+                        </ul>
+                        <p class="price">Starting at <span>₹<%= service.price %></span></p>
                       </div>
-                      <div class="mt-2">
-                        <a class="btn-solid-lg page-scroll" href="/package/<%= package.package_id%>"
-                          >READ MORE</a
-                        >
+                      <div class="button-container">
+                        <a class="btn-solid-reg page-scroll" href="/services">DETAILS</a>
                       </div>
+
+                      <!-- end of button-container -->
                     </div>
-                    <!--/.single-package-item-txt-->
-                  </article>
-                <% }) %>
-                <% } %> 
-                </div>
-              </div>
-    
-              <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 rec-margin">
-                <div class="tm-bg-white">
-                  <div class="tm-bg-primary tm-sidebar-pad">
-                    <h3 class="tm-color-white">Recommended Packages</h3>
-                  </div>
-                  <div class="tm-sidebar-pad-2">
-                    <% if(recommended.length > 0){ %>
-                      <% recommended.forEach((package,index) => { %>
-                        <% if(index < 4 ){ %>
-                          <a
-                          href="#"
-                          class="media tm-media tm-recommended-item"
-                          style="text-decoration: none"
-                        >
-                          <img src="/api/packages/image/<%= package.package_id%>" width="90" height="85"  alt="Image" />
-                          <div class="media-body tm-media-body tm-bg-gray">
-                            <!-- maxlength 34 -->
-                            <h5 class="text-capitalize"><%= package.name.substring(0,31)%></h5>
-                          </div>
-                        </a>
-                        <%}%>
-                    <% }) %>
-                    <% } %> 
-                  </div>
-                </div>
-              </div>
-            <% } %> 
-         
+                    <%}%>
+                      <% }) %>
+                        <% } %>
+                          <% } %>
         </div>
-        <div class="button-container text-center mt-3">
-          <a
-            class="btn-solid-reg page-scroll text-uppercase"
-            href="/packages"
-            >SEE all packages <i class="fas fa-arrow-right ml-2"></i
-          ></a>
+        <!-- end of col -->
+      </div>
+      <div class="button-container">
+        <a class="btn-solid-reg page-scroll text-uppercase" href="/services">SEE all services<i
+            class="fas fa-arrow-right ml-2"></i></a>
+      </div>
+      <!-- end of row -->
+    </div>
+    <!-- end of container -->
+  </div>
+  <!-- end of services -->
+
+  <!--sticy background section -->
+  <section id="sticky-background" class="p-5">
+    <div class="dark-overlay">
+      <div class="row" style="height: 100%">
+        <div class="col-md-12 d-flex justify-content-center flex-column align-items-center">
+          <h1 class="text-uppercase">Travel sahyadri</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+            aliquam voluptates qui alias!
+          </p>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- packages -->
+  <div class="tm-section tm-section-pad tm-bg-gray" id="tm-section-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 heading-section">
+          <h2 class="section-title text-center text-uppercase">Packages</h2>
+          <p class="text-center">Choose Package That Suits Your Needs</p>
+        </div>
+        <% if(error !=null){%>
+          <div class="col-lg-12 heading-section text-center  p-5">
+            <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
+            <p class="text-danger">
+              <%= error %>
+            </p>
+          </div>
+          <% } else { %>
+            <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+              <div class="tm-article-carousel">
+
+                <% if(packages.length> 0){ %>
+                  <% packages.forEach((package,index)=> { %>
+                    <article class="single-package-item tm-carousel-item">
+                      <img src="/api/packages/image/<%= package.package_id%>" alt="Image" class="img-fluid" />
+                      <div class="single-package-item-txt">
+                        <h3 class=" text-capitalize tm-article-title-2" style="word-wrap: break-word;">
+                          <%= package.name.substring(0,48) %>
+                        </h3>
+                        <div class="packages-para">
+                          <p>
+                            <span>
+                              <i class="fa fa-angle-right"></i>
+                              <%= package.duration %>
+                            </span>
+                          </p>
+                          <p>
+                            <span>
+                              <i class="fa fa-angle-right"></i>
+                              <%= package.location%>
+                            </span>
+                          </p>
+                          <% if(package.price){ %>
+                            <div class="d-flex">
+                              <h5>Price :&nbsp&nbsp&nbsp</h5>
+                              <h5>₹.<%= package.price %>/-</h5>
+                            </div>
+                            <% } %>
+                        </div>
+                        <div class="mt-2">
+                          <a class="btn-solid-lg page-scroll" href="/package/<%= package.package_id%>">READ MORE</a>
+                        </div>
+                      </div>
+                      <!--/.single-package-item-txt-->
+                    </article>
+                    <% }) %>
+                      <% } %>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 rec-margin">
+              <div class="tm-bg-white">
+                <div class="tm-bg-primary tm-sidebar-pad">
+                  <h3 class="tm-color-white">Recommended Packages</h3>
+                </div>
+                <div class="tm-sidebar-pad-2">
+                  <% if(recommended.length> 0){ %>
+                    <% recommended.forEach((package,index)=> { %>
+                      <% if(index < 4 ){ %>
+                        <a href="#" class="media tm-media tm-recommended-item" style="text-decoration: none">
+                          <img src="/api/packages/image/<%= package.package_id%>" width="90" height="85" alt="Image" />
+                          <div class="media-body tm-media-body tm-bg-gray">
+                            <!-- maxlength 34 -->
+                            <h5 class="text-capitalize">
+                              <%= package.name.substring(0,31)%>
+                            </h5>
+                          </div>
+                        </a>
+                        <%}%>
+                          <% }) %>
+                            <% } %>
+                </div>
+              </div>
+            </div>
+            <% } %>
+
+      </div>
+      <div class="button-container text-center mt-3">
+        <a class="btn-solid-reg page-scroll text-uppercase" href="/packages">SEE all packages <i
+            class="fas fa-arrow-right ml-2"></i></a>
+      </div>
+    </div>
+  </div>
 
 
-<%- include('../partials/footer')%>
-   <!-- Scripts -->
-   <script src="/js/jquery.min.js"></script>
-   <!-- jQuery for Bootstrap's JavaScript plugins -->
-   <script src="/js/popper.min.js"></script>
-   <!-- Popper tooltip library for Bootstrap -->
-   <script src="/js/bootstrap.min.js"></script>
-   <!-- Bootstrap framework -->
-   <script src="/js/jquery.easing.min.js"></script>
-   <!-- jQuery Easing for smooth scrolling between anchors -->
-   <script src="/js/swiper.min.js"></script>
-   <!-- Swiper for image and text sliders -->
-   <script src="/js/jquery.magnific-popup.js"></script>
-   <!-- Magnific Popup for lightboxes -->
-   <script src="/js/morphext.min.js"></script>
-   <!-- Morphtext rotating text in the header -->
-   <script src="/js/isotope.pkgd.min.js"></script>
-   <!-- Isotope for filter -->
-   <script src="/js/validator.min.js"></script>
-   <!-- Validator.js - Bootstrap plugin that validates forms -->
-   <script src="/js/scripts.js"></script>
-   <script src="/js/jquery.singlePageNav.min.js"></script>
-   <script src="/slick/slick.min.js"></script>
-   <!-- Custom scripts -->
+  <%- include('../partials/footer')%>
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="/js/popper.min.js"></script>
+    <!-- Popper tooltip library for Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Bootstrap framework -->
+    <script src="/js/jquery.easing.min.js"></script>
+    <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="/js/swiper.min.js"></script>
+    <!-- Swiper for image and text sliders -->
+    <script src="/js/jquery.magnific-popup.js"></script>
+    <!-- Magnific Popup for lightboxes -->
+    <script src="/js/morphext.min.js"></script>
+    <!-- Morphtext rotating text in the header -->
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <!-- Isotope for filter -->
+    <script src="/js/validator.min.js"></script>
+    <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="/js/scripts.js"></script>
+    <script src="/js/jquery.singlePageNav.min.js"></script>
+    <script src="/slick/slick.min.js"></script>
+    <!-- Custom scripts -->
 
-   <script>
-     function setCarousel() {
-       if ($('.tm-article-carousel').hasClass('slick-initialized')) {
-         $('.tm-article-carousel').slick('destroy');
-       }
+    <script>
+      function setCarousel()
+      {
+        if ($('.tm-article-carousel').hasClass('slick-initialized')) {
+          $('.tm-article-carousel').slick('destroy');
+        }
 
-       if ($(window).width() < 438) {
-         // Slick carousel
-         $('.tm-article-carousel').slick({
-          autoplay: true,
-          autoplaySpeed: 1500,
+        if ($(window).width() < 438) {
+          // Slick carousel
+          $('.tm-article-carousel').slick({
+            autoplay: true,
+            autoplaySpeed: 1500,
 
-           infinite: false,
-           dots: true,
-           slidesToShow: 1,
-           slidesToScroll: 1,
-         });
-       } else {
-         $('.tm-article-carousel').slick({
-          autoplay: true,
-          autoplaySpeed: 2000,
-           infinite: false,
-           dots: true,
-           slidesToShow: 2,
-           slidesToScroll: 1,
-         });
-       }
-     }
+            infinite: false,
+            dots: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          });
+        } else {
+          $('.tm-article-carousel').slick({
+            autoplay: true,
+            autoplaySpeed: 2000,
+            infinite: false,
+            dots: true,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          });
+        }
+      }
 
-     function setPageNav() {
-       if ($(window).width() > 991) {
-         $('#tm-top-bar').singlePageNav({
-           currentClass: 'active',
-           offset: 79,
-         });
-       } else {
-         $('#tm-top-bar').singlePageNav({
-           currentClass: 'active',
-           offset: 65,
-         });
-       }
-     }
+      function setPageNav()
+      {
+        if ($(window).width() > 991) {
+          $('#tm-top-bar').singlePageNav({
+            currentClass: 'active',
+            offset: 79,
+          });
+        } else {
+          $('#tm-top-bar').singlePageNav({
+            currentClass: 'active',
+            offset: 65,
+          });
+        }
+      }
 
-     function togglePlayPause() {
-       vid = $('.tmVideo').get(0);
+      function togglePlayPause()
+      {
+        vid = $('.tmVideo').get(0);
 
-       if (vid.paused) {
-         vid.play();
-         $('.tm-btn-play').hide();
-         $('.tm-btn-pause').show();
-       } else {
-         vid.pause();
-         $('.tm-btn-play').show();
-         $('.tm-btn-pause').hide();
-       }
-     }
+        if (vid.paused) {
+          vid.play();
+          $('.tm-btn-play').hide();
+          $('.tm-btn-pause').show();
+        } else {
+          vid.pause();
+          $('.tm-btn-play').show();
+          $('.tm-btn-pause').hide();
+        }
+      }
 
-     $(document).ready(function () {
-       $(window).on('scroll', function () {
-         if ($(window).scrollTop() > 100) {
-           $('.tm-top-bar').addClass('active');
-         } else {
-           //remove the background property so it comes transparent again (defined in your css)
-           $('.tm-top-bar').removeClass('active');
-         }
-       });
+      $(document).ready(function ()
+      {
+        $(window).on('scroll', function ()
+        {
+          if ($(window).scrollTop() > 100) {
+            $('.tm-top-bar').addClass('active');
+          } else {
+            //remove the background property so it comes transparent again (defined in your css)
+            $('.tm-top-bar').removeClass('active');
+          }
+        });
 
-       // Slick carousel
-       setCarousel();
-       setPageNav();
+        // Slick carousel
+        setCarousel();
+        setPageNav();
 
-       $(window).resize(function () {
-         setCarousel();
-         setPageNav();
-       });
-     });
-   </script>
- </body>
-</html>
+        $(window).resize(function ()
+        {
+          setCarousel();
+          setPageNav();
+        });
+      });
+    </script>
+    </body>
+
+    </html>

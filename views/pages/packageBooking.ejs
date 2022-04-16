@@ -1,408 +1,418 @@
 <html>
-    <head>
-    
-      <meta charset="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
-      
-      <!-- SEO Meta Tags -->
-      <meta
-        name="description"
-        content="Vanrai advanture is top advature toure company in maharastara. Enjoy lates sahyadri treks with vanrai advanture"
-      />
-      <meta name="author" content="Intueron" />
-      <meta
-        name="keywords"
-        content="vanrai adventures, sahyadri,harishchandragadh trek,trekking ,shivaji maharaj,forts,maharastra tourism"
-      />
-      
-      <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-      <meta property="og:site_name" content="" />
-      <!-- website name -->
-      <meta property="og:site" content="" />
-      <!-- website link -->
-      <meta property="og:title" content="" />
-      <!-- title shown in the actual shared post -->
-      <meta property="og:description" content="" />
-      <!-- description shown in the actual shared post -->
-      <meta property="og:image" content="" />
-      <!-- image link, make sure it's jpg -->
-      <meta property="og:url" content="" />
-      <!-- where do you want your post to link to -->
-      <meta property="og:type" content="article" />
-      <!-- Styles -->
-      <link
-        href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" type="text/css" href="/css/fontawesome-all.css" />
 
-      <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-      <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="google-site-verification" content="aME2gyxMcmZ0EOZpYVBQVtY9G43ho_fnzs2XdXRb0xw" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="<%= package.description.substring(0,100)%>" />
+  <meta name="author" content="Intueron" />
+  <meta name="keywords"
+    content="vanrai,vanraiadventures,<%= package.name%>,Harishchandragad-trek,kokankada,trek,sahyadri,trekking,sandhan velley,monsoon treks " />
+  <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+  <meta property="og:site_name" content="vanraiadventures" />
+  <!-- website name -->
+  <meta property="og:site" content="Vanrai Adventures" />
+  <!-- website link -->
+  <meta property="og:title" content="Get in touch with Vanrai Adventures" />
+  <!-- title shown in the actual shared post -->
+  <meta property="og:description" content="Vanrai adventures is a top tour and treks service company in maharastra" />
+  <!-- description shown in the actual shared post -->
+  <meta property="og:image" content="" />
+  <!-- image link, make sure it's jpg -->
+  <meta property="og:url" content="https://vanraiadventures.in/" />
+  <!-- where do you want your post to link to -->
+  <meta property="og:type" content="article" />
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/css/fontawesome-all.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
 
 
-      <link rel="stylesheet" type="text/css" href="/css/date.css" />
-   
-       
-      <!-- Favicon  -->
-      <link rel="icon" href="/images/favicon.png" />
-      
-   
-    </head>
+  <link rel="stylesheet" type="text/css" href="/css/date.css" />
+  <title>
+    <%= package.name%>
+  </title>
+  <!-- Favicon  -->
+  <link rel="icon" href="/images/favicon.png" />
+
+
+</head>
+
 <body>
 
-   <!-- Preloader -->
-   <div class="spinner-wrapper">
+  <!-- Preloader -->
+  <div class="spinner-wrapper">
     <div class="spinner">
       <div class="bounce1"></div>
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>
   </div>
-    <%- include('../partials/navbar')%>
+  <%- include('../partials/navbar')%>
 
-<div class="icon-bar">
-  <a href="<%= package.video ? package.video : '#'%>" class="facebook"><i class="fa fa-play-circle"></i></a> 
-  <a href="/contact" class="instagram"><i class="fa fa-phone"></i></a> 
-  <a href="/gallery" class="phone"><i class="fa fa-camera"></i></a> 
-  
-</div>
-<header class="header-2" 
-style=" background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+    <div class="icon-bar">
+      <a href="<%= package.video ? package.video : '#'%>" class="facebook"><i class="fa fa-play-circle"></i></a>
+      <a href="/contact" class="instagram"><i class="fa fa-phone"></i></a>
+      <a href="/gallery" class="phone"><i class="fa fa-camera"></i></a>
+
+    </div>
+    <header class="header-2" style=" background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
       url('/api/packages/image/<%= package.package_id%>') center center no-repeat;
       background-size: 100% 100%;
       height: 500px;">
-  <div class="header-content2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="text-container-2">
-            <h1 class="text-capitalise" style="letter-spacing: 3px;"></h3>
+      <div class="header-content2">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-container-2">
+                <h1 class="text-capitalise" style="letter-spacing: 3px;">
+                  </h3>
+              </div>
+            </div>
+            <!-- end of col -->
           </div>
+          <!-- end of row -->
         </div>
-        <!-- end of col -->
+        <!-- end of container -->
       </div>
-      <!-- end of row -->
-    </div>
-    <!-- end of container -->
-  </div>
-  <!-- end of header-content -->
-</header>
+      <!-- end of header-content -->
+    </header>
 
 
     <!-- error   -->
-    <% if(error != null){%>
+    <% if(error !=null){%>
       <div class="col-lg-12 heading-section text-center  p-5">
         <h2 class="section-title m-5">Error <i class="fas fa-exclamation-triangle"></i></h2>
         <p class="text-danger">
-         <%= error %>
+          <%= error %>
         </p>
       </div>
       <% } else { %>
         <div class="container">
-          <% if(successMessage != null){ %>
+          <% if(successMessage !=null){ %>
             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-              <strong class="text-center"><%= successMessage%></strong> 
-              <a type="button" class="close"  aria-label="Close" href="/package/<%= package.package_id%>">
+              <strong class="text-center">
+                <%= successMessage%>
+              </strong>
+              <a type="button" class="close" aria-label="Close" href="/package/<%= package.package_id%>">
                 <span aria-hidden="true">&times;</span>
               </a>
             </div>
-          <% }%>
-          
-          <% if(errorMessage != null){ %>
-          <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            <strong class="text-center"><%= errorMessage %></strong> 
-            <a type="button" class="close"  aria-label="Close" href="/package/<%= package.package_id%>">
-              <span aria-hidden="true" >&times;</span>
-            </a>
-          </div>
-          <% }%>
+            <% }%>
+
+              <% if(errorMessage !=null){ %>
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                  <strong class="text-center">
+                    <%= errorMessage %>
+                  </strong>
+                  <a type="button" class="close" aria-label="Close" href="/package/<%= package.package_id%>">
+                    <span aria-hidden="true">&times;</span>
+                  </a>
+                </div>
+                <% }%>
         </div>
- <!-- About -->
- <div class="counter py-5">
-  <div class="container">
+        <!-- About -->
+        <div class="counter py-5">
+          <div class="container">
 
-
-      <div class="row ">
-          <div >
+            <div>
               <div class="tab" role="tabpanel">
-                  <!-- Nav tabs -->
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class=" "><a  class="tab_a" href="#itinerary" >Overview</a></li>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class=" "><a class="tab_a" href="#itinerary">Overview</a></li>
 
-                    <% if(package.itinerary){ %>
-                      <li role="presentation" class=" "><a  class="tab_a" href="#itinerary" >Itinerary</a></li>
-                     <% } %>
-                     <% if(package.packageHighlights.length > 0){ %>
-                      <li role="presentation"><a class="tab_a " href="#eventdetails" >Event Details</a></li>
-                     <% } %>
-                     <% if(package.ttcs.length > 0){ %>
-                      <li role="presentation"><a class="tab_a"  href="#thingstocarry" >Things to carry</a></li>
+                  <% if(package.itinerary){ %>
+                    <li role="presentation" class=" "><a class="tab_a" href="#itinerary">Itinerary</a></li>
                     <% } %>
-                    <% if(package.wwgs.length > 0 || package.wwds?.length > 0){ %>
-                      <li role="presentation"><a class="tab_a"  href="#whatwegivedont" >What we give/don't</a></li>
-
-                      <% }%>
-                    </ul>
-                  <!-- Tab panes -->
-                  <div class="col-lg-12 col-xl-12 mt-5">
-                    <div class="text-container">
-                      <h1 class="text-capitalize mb-5" style="letter-spacing: 1px;word-wrap: break-word;font-size: 36px; "><%= package.name%></h1>
-                      
-                    <h2 class="font-lg " style="color:#14bf98">Overview</h2>
-                     <div class="row">
-                       <div class="col-lg-9 col-sm-6">
-                        <p style="white-space:pre-line ;margin-top: -20px;" >
-                          <%- package.description%>
-                        </p>
-                       </div>
-                       <div class="col-lg-3 col-sm-6 mb-5">
-                        <div class="card">
-                         
-                          <div class="card-body">
-                            <p class="" ><i class="fa fa-map-marker"  style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%= package.location%></p>
-            
-                            <p class="" ><i class="fa fa-clock"  style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%= package.duration%></p>
-                            <p class="" ><i class="fa fa-phone"  style="color:#c66995"></i>&nbsp;&nbsp; 8265078592 , <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9421590719,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9322570168</p>
-            
-                            <% if(package.price){ %>
-                              <h3 class="text-capitalise" style="letter-spacing: 1px;">Price : &nbsp;&nbsp;&nbsp;&nbsp;₹<%= package.price%></h2>
+                      <% if(package.packageHighlights.length> 0){ %>
+                        <li role="presentation"><a class="tab_a " href="#eventdetails">Event Details</a></li>
+                        <% } %>
+                          <% if(package.ttcs.length> 0){ %>
+                            <li role="presentation"><a class="tab_a" href="#thingstocarry">Things to carry</a></li>
                             <% } %>
-                          
-                          </div>
-                         
-                          <div class="button-container text-center" style="margin-bottom: -20px;">
-                            <a class="btn-solid-reg page-scroll" style="z-index: 1;background-color: #14bf98;color: white;" data-toggle="modal" data-target="#elegantModalForm">Enquire / Book</a>
-                          </div>
-                          <!-- end of button-container -->
+                              <% if(package.wwgs.length> 0 || package.wwds?.length > 0){ %>
+                                <li role="presentation"><a class="tab_a" href="#whatwegivedont">What we give/don't</a>
+                                </li>
+
+                                <% }%>
+                </ul>
+                <!-- Tab panes -->
+
+              </div>
+              <div class="col-lg-12 col-xl-12 mt-5">
+                <div class="text-container">
+                  <h1 class="text-capitalize mb-5" style="letter-spacing: 1px;word-wrap: break-word;font-size: 36px; ">
+                    <%= package.name%>
+                  </h1>
+                  <h2 class="font-lg " style="color:#14bf98">Overview</h2>
+                  <div class="row">
+                    <div class="col-lg-9 col-sm-6">
+                      <p style="white-space:pre-line ;margin-top: -20px;">
+                        <%- package.description%>
+                      </p>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 mb-5">
+                      <div class="card">
+
+                        <div class="card-body">
+                          <p class=""><i class="fa fa-map-marker" style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%=
+                              package.location%>
+                          </p>
+
+                          <p class=""><i class="fa fa-clock" style="color:#c66995"></i>&nbsp;&nbsp;&nbsp;<%=
+                              package.duration%>
+                          </p>
+                          <p class=""><i class="fa fa-phone" style="color:#c66995"></i>&nbsp;&nbsp; 8265078592 ,
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            9421590719,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            9322570168
+                          </p>
+
+                          <% if(package.price){ %>
+                            <h3 class="text-capitalise" style="letter-spacing: 1px;">Price : &nbsp;&nbsp;&nbsp;&nbsp;₹
+                              <%= package.price%>
+                                </h2>
+                                <% } %>
+
                         </div>
-                       </div>
-                     </div>
-            
-                    <% if(package.itinerary){ %>
-                      <h2 id="itinerary" class="mt-3" style="color:#14bf98">Itinerary</h2>
-                      <div class="row">
-                       <div class="col-lg-9 col-sm-6">
-                        <p style="white-space:pre-line ;margin-top: -20px;" >
+
+                        <div class="button-container text-center" style="margin-bottom: -20px;">
+                          <a class="btn-solid-reg page-scroll"
+                            style="z-index: 1;background-color: #14bf98;color: white;" data-toggle="modal"
+                            data-target="#elegantModalForm">Enquire / Book</a>
+                        </div>
+                        <!-- end of button-container -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <% if(package.itinerary){ %>
+                    <h2 id="itinerary" class="mt-3" style="color:#14bf98">Itinerary</h2>
+                    <div class="row">
+                      <div class="col-lg-9 col-sm-6">
+                        <p style="white-space:pre-line ;margin-top: -20px;">
                           <%- package.itinerary%>
                         </p>
-                       </div>
-                       <div class="col-lg-3 col-sm-6 mb-5">
-                       </div>
-                     </div>
-                     <% } %>
-                    <% if(package.packageHighlights.length > 0){ %>
-                      <h2 class="mt-3" id="eventdetails" style="color:#14bf98">Event Details</h2>
-                      <ul class="list-unstyled li-space-lg">
-                          <% package.packageHighlights.forEach((highlight,index) => { %>
-                        <li class="media">
-                            &nbsp;&nbsp;&nbsp;<i class="fas fa-square " style="color:#c66995"></i>
-                          <div class="media-body">
-                            <%= highlight.name %>
-                          </div>
-                        </li>
-                        <% }) %>
-                      </ul>
-                    <% } %>
-                    <% if(package.ttcs.length > 0){ %>
-                      <h2 id="thingstocarry" class="font-lg " style="color:#14bf98">Things to carry</h2>
-                      <ul class="list-unstyled li-space-lg">
-                          <% package.ttcs.forEach((item,index) => { %>
-                            <li>
-                              &nbsp;&nbsp;&nbsp;<i class="fas fa-square" style="color:#c66995"></i>
-                              &nbsp;&nbsp;<%= item.name%>
-                            </li>
-                          <% }) %>   
-                      </ul>
-                    <% } %>
-                    <% if(package.wwgs.length > 0 || package.wwds.length){ %>
-                      <h2 id="whatwegivedont" class="font-lg " style="color:#14bf98">What we'll give /What we won't</h2>
-                      <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                          <ul class="list-unstyled li-space-lg">
-                            <% if(package.wwgs.length > 0){ %>
-                                <% package.wwgs.forEach((item,index) => { %>
-                                  <li>
-                                    <i class="fa fa-check text-success" ></i>
-                                    &nbsp;&nbsp;&nbsp;<%= item.name%>
-                                  </li>
-                                <% }) %>
-                            <% } %>
-                          
-                          </ul>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                          <ul class="list-unstyled li-space-lg">
-                            <% if(package.wwds.length > 0){ %>
-                                <% package.wwds.forEach((item,index) => { %>
-                                  <li>
-                                    <i class="text-bold text-danger" >X</i>
-                                    &nbsp;&nbsp;&nbsp;<%= item.name%>
-                                  </li>
-                                <% }) %>
-                            <% } %>
-                          
-                          </ul>
-                        </div>
                       </div>
-                    <% } %>
-                      <div id="mydiv" data-test=<%= availableDates %>></div>
-            
-                      <!-- end of counter -->
+                      <div class="col-lg-3 col-sm-6 mb-5">
+                      </div>
                     </div>
-                    <!-- end of text-container -->
-                  </div>
+                    <% } %>
+                      <% if(package.packageHighlights.length> 0){ %>
+                        <h2 class="mt-3" id="eventdetails" style="color:#14bf98">Event Details</h2>
+                        <ul class="list-unstyled li-space-lg">
+                          <% package.packageHighlights.forEach((highlight,index)=> { %>
+                            <li class="media">
+                              &nbsp;&nbsp;&nbsp;<i class="fas fa-square " style="color:#c66995"></i>
+                              <div class="media-body">
+                                <%= highlight.name %>
+                              </div>
+                            </li>
+                            <% }) %>
+                        </ul>
+                        <% } %>
+                          <% if(package.ttcs.length> 0){ %>
+                            <h2 id="thingstocarry" class="font-lg " style="color:#14bf98">Things to carry</h2>
+                            <ul class="list-unstyled li-space-lg">
+                              <% package.ttcs.forEach((item,index)=> { %>
+                                <li>
+                                  &nbsp;&nbsp;&nbsp;<i class="fas fa-square" style="color:#c66995"></i>
+                                  &nbsp;&nbsp;<%= item.name%>
+                                </li>
+                                <% }) %>
+                            </ul>
+                            <% } %>
+                              <% if(package.wwgs.length> 0 || package.wwds.length){ %>
+                                <h2 id="whatwegivedont" class="font-lg " style="color:#14bf98">What we'll give /What
+                                  we won't</h2>
+                                <div class="row">
+                                  <div class="col-md-6 col-sm-6">
+                                    <ul class="list-unstyled li-space-lg">
+                                      <% if(package.wwgs.length> 0){ %>
+                                        <% package.wwgs.forEach((item,index)=> { %>
+                                          <li>
+                                            <i class="fa fa-check text-success"></i>
+                                            &nbsp;&nbsp;&nbsp;<%= item.name%>
+                                          </li>
+                                          <% }) %>
+                                            <% } %>
+
+                                    </ul>
+                                  </div>
+                                  <div class="col-md-6 col-sm-6">
+                                    <ul class="list-unstyled li-space-lg">
+                                      <% if(package.wwds.length> 0){ %>
+                                        <% package.wwds.forEach((item,index)=> { %>
+                                          <li>
+                                            <i class="text-bold text-danger">X</i>
+                                            &nbsp;&nbsp;&nbsp;<%= item.name%>
+                                          </li>
+                                          <% }) %>
+                                            <% } %>
+
+                                    </ul>
+                                  </div>
+                                </div>
+                                <% } %>
+                                  <div id="mydiv" data-test=<%=availableDates %>></div>
+
+                                  <!-- end of counter -->
+                </div>
+                <!-- end of text-container -->
               </div>
+            </div>
+
+
+
+            <!-- end of row -->
           </div>
-    
-  </div>
+          <!-- end of container -->
+        </div>
+        <% } %>
+          <!-- model -->
+          <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <!--Content-->
+              <div class="modal-content form-elegant">
+                <!--Header-->
+                <div class="modal-header text-center">
+                  <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>
+                      <%= package.name%>
+                    </strong></h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body mx-4">
+                  <!--Body-->
+                  <form action="/vanrai-admin/bookings" method="post" id="bookingform" role="form"
+                    data-toggle="validator" id="serviceUpdateForm">
 
-    <div class="row">
-     
-      <!-- end of col -->
-      
-      <!-- end of col -->
-    </div>
-    <!-- end of row -->
-  </div>
-  <!-- end of container -->
-</div>
-<% } %>
-<!-- model -->
-<div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <!--Content-->
-  <div class="modal-content form-elegant">
-    <!--Header-->
-    <div class="modal-header text-center">
-      <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong><%= package.name%></strong></h3>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <!--Body-->
-    <div class="modal-body mx-4">
-      <!--Body-->
-      <form action="/vanrai-admin/bookings" method="post" id="bookingform"  role="form"
-      data-toggle="validator"
-      id="serviceUpdateForm">
-    
 
-      <input type="text" id="package_name"  name="package_name" value="<%= package.name%>" hidden>   
-      <input type="text" id="package_id"  name="package_id" value="<%= package.package_id%>" hidden>    
-      <input type="text" id="price"  name="price" value="<%= package.price %>" hidden>    
+                    <input type="text" id="package_name" name="package_name" value="<%= package.name%>" hidden>
+                    <input type="text" id="package_id" name="package_id" value="<%= package.package_id%>" hidden>
+                    <input type="text" id="price" name="price" value="<%= package.price %>" hidden>
 
-      <div class="form-group mb-2">
-        <label data-success="right" for="name">Full Name</label>
-        <input type="text" id="name" name="name" class="form-control" data-error="you must provide name" required>   
-          <!-- Error -->
-          <div class="help-block with-errors text-danger"></div>
-      </div>
-      <div class="form-group mb-2">
-        <label  data-success="right" for="name">Email-Id</label>
-        <input type="email" id="email" name="email" class="form-control" data-error="you must provide email" required>   
-          <!-- Error -->
-          <div class="help-block with-errors text-danger"></div>
-      </div>
-      <div class="form-group mb-2">
-        <label  data-success="right" for="name">Phone No</label>
-        <input type="number" id="phone" name="phone" class="form-control"  data-error="you must phone-number" required>   
-          <!-- Error -->
-          <div class="help-block with-errors text-danger"></div>
-      </div>
-      <div class="form-group mb-2">
-        <label  data-success="right" for="numOfPeople">How many peoples?</label>
-        <input type="number" id="people" name="people" class="form-control"  data-error="Minimum 1 person." required>  <!-- Error -->
-        <div class="help-block with-errors text-danger"></div>
-      </div>
-      
-      <label >Select Date</label>
-      <div id="datepicker" class=" form-group  input-group date" data-date-format="mm-dd-yyyy">
-        
+                    <div class="form-group mb-2">
+                      <label data-success="right" for="name">Full Name</label>
+                      <input type="text" id="name" name="name" class="form-control" data-error="you must provide name"
+                        required>
+                      <!-- Error -->
+                      <div class="help-block with-errors text-danger"></div>
+                    </div>
+                    <div class="form-group mb-2">
+                      <label data-success="right" for="name">Email-Id</label>
+                      <input type="email" id="email" name="email" class="form-control"
+                        data-error="you must provide email" required>
+                      <!-- Error -->
+                      <div class="help-block with-errors text-danger"></div>
+                    </div>
+                    <div class="form-group mb-2">
+                      <label data-success="right" for="name">Phone No</label>
+                      <input type="number" id="phone" name="phone" class="form-control"
+                        data-error="you must phone-number" required>
+                      <!-- Error -->
+                      <div class="help-block with-errors text-danger"></div>
+                    </div>
+                    <div class="form-group mb-2">
+                      <label data-success="right" for="numOfPeople">How many peoples?</label>
+                      <input type="number" id="people" name="people" class="form-control" data-error="Minimum 1 person."
+                        required> <!-- Error -->
+                      <div class="help-block with-errors text-danger"></div>
+                    </div>
 
-        <input class="form-control" name="date" type="text"  />
-        <span class="input-group-addon"
-          ><i class="glyphicon glyphicon-calendar"></i
-        ></span>
-      </div>
-      <!-- <div class="text-center mb-3">
+                    <label>Select Date</label>
+                    <div id="datepicker" class=" form-group  input-group date" data-date-format="mm-dd-yyyy">
+
+
+                      <input class="form-control" name="date" type="text" />
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                    <!-- <div class="text-center mb-3">
         <button type="button" class="btn btn-solid-lg btn-block btn-rounded z-depth-1a">Check avability</button>
       </div> -->
-    
-      <div class="text-center mb-3">
-        <button type="submit" class="btn btn-solid-lg btn-block btn-rounded z-depth-1a">Book</button>
-      </div>
-    </form>
-     
-    </div>
-    <!--Footer-->
-    <div class="modal-footer mx-5 pt-3 mb-1">
-      <p class="font-small grey-text d-flex justify-content-center">You will receive a call if your booking is confiremed </p>
-    </div>
-  </div>
-  <!--/.Content-->
-</div>
-</div>
+
+                    <div class="text-center mb-3">
+                      <button type="submit" class="btn btn-solid-lg btn-block btn-rounded z-depth-1a">Book</button>
+                    </div>
+                  </form>
+
+                </div>
+                <!--Footer-->
+                <div class="modal-footer mx-5 pt-3 mb-1">
+                  <p class="font-small grey-text d-flex justify-content-center">You will receive a call if your booking
+                    is confiremed </p>
+                </div>
+              </div>
+              <!--/.Content-->
+            </div>
+          </div>
 
 
-<%- include('../partials/footer')%>
-    <!-- Scripts -->
-    <script src="/js/jquery.min.js"></script>
- 
-    <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="/js/popper.min.js"></script>
-    <!-- Popper tooltip library for Bootstrap -->
-    <script src="/js/bootstrap.min.js"></script>
+          <%- include('../partials/footer')%>
+            <!-- Scripts -->
+            <script src="/js/jquery.min.js"></script>
 
-   <script src="/js/date.js"></script>
-    <!-- Bootstrap framework -->
-    <script src="/js/jquery.easing.min.js"></script>
-    <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="/js/swiper.min.js"></script>
-    <script src="/js/validator.min.js"></script>
-    <script src="/js/scripts.js"></script>
-    <script type="text/javascript">
-      var enableDays = document.getElementById('mydiv').dataset.test;
-      function formatDate(d) {
-        var day = String(d.getDate());
-        //add leading zero if day is is single digit
-        if (day.length == 1) day = '0' + day;
-        var month = String(d.getMonth() + 1);
-        //add leading zero if month is is single digit
-        if (month.length == 1) month = '0' + month;
-        return day + '-' + month + '-' + d.getFullYear();
-      }
+            <!-- jQuery for Bootstrap's JavaScript plugins -->
+            <script src="/js/popper.min.js"></script>
+            <!-- Popper tooltip library for Bootstrap -->
+            <script src="/js/bootstrap.min.js"></script>
 
-      $(function () {
-        $('#datepicker').datepicker({
-          maxViewMode: 2,
-          weekStart: 1,
+            <script src="/js/date.js"></script>
+            <!-- Bootstrap framework -->
+            <script src="/js/jquery.easing.min.js"></script>
+            <!-- jQuery Easing for smooth scrolling between anchors -->
+            <script src="/js/swiper.min.js"></script>
+            <script src="/js/validator.min.js"></script>
+            <script src="/js/scripts.js"></script>
+            <script type="text/javascript">
+              var enableDays = document.getElementById('mydiv').dataset.test;
+              function formatDate(d)
+              {
+                var day = String(d.getDate());
+                //add leading zero if day is is single digit
+                if (day.length == 1) day = '0' + day;
+                var month = String(d.getMonth() + 1);
+                //add leading zero if month is is single digit
+                if (month.length == 1) month = '0' + month;
+                return day + '-' + month + '-' + d.getFullYear();
+              }
 
-          beforeShowDay: function (date) {
-            if (enableDays.indexOf(formatDate(date)) < 0)
-              return {
-                enabled: false,
-              };
-            else
-              return {
-                enabled: true,
-              };
-          },
-          todayHighlight: true,
-     
-          clearBtn: true,
-          autoclose: true,
-        });
-      });
-      
-  </script>
- 
-  </body>
+              $(function ()
+              {
+                $('#datepicker').datepicker({
+                  maxViewMode: 2,
+                  weekStart: 1,
+
+                  beforeShowDay: function (date)
+                  {
+                    if (enableDays.indexOf(formatDate(date)) < 0)
+                      return {
+                        enabled: false,
+                      };
+                    else
+                      return {
+                        enabled: true,
+                      };
+                  },
+                  todayHighlight: true,
+
+                  clearBtn: true,
+                  autoclose: true,
+                });
+              });
+
+            </script>
+
+</body>
+
 </html>
