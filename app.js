@@ -21,7 +21,7 @@ const { bookingRouter } = require('./src/routes/booking.routes')
 const { galleryRouter } = require('./src/routes/gallery.routes');
 const { errorHandler } = require('./src/middleware/errorHandler')
 const db = require("./src/models");
-
+const Packages = db.packages;
 var moment = require('moment');
 const axios = require('axios')
 const { NotFoundError } = require('./src/error')
@@ -146,7 +146,7 @@ app.get('/sandhan-valley-trek', (req, res) => {
   res.redirect('/packages')
 })
 let sitemap
-app.get('/sitemap.xml', function (req, res) {
+app.get('/sitemap.xml', async function (req, res) {
   res.header('Content-Type', 'application/xml');
   res.header('Content-Encoding', 'gzip');
   // if we have a cached entry send it
@@ -157,26 +157,29 @@ app.get('/sitemap.xml', function (req, res) {
   }
   try
   {
+
+    const packageNames = await Packages.findAll({ attributes: ['name'] });
+
+
     const smStream = new SitemapStream({ hostname: 'https://vanraiadventures.in/' })
     const pipeline = smStream.pipe(createGzip())
 
     // pipe your entries or directly write them.
     smStream.write({ url: '/', changefreq: 'daily', priority: 1 })
+    packageNames.forEach((package) => {
+      smStream.write({
+        url: `/package/documentedPackage/${package.name.trim().toLowerCase().replace(/ /g, '-')}`,
+        changefreq: 'daily',
+        priority: 0.9
+      })
+    })
     smStream.write({ url: '/Harishchandragad-trek', changefreq: 'daily', priority: 0.9 })
-    smStream.write({ url: '/Harishchandragad-trek-via-pachnai', changefreq: 'daily', priority: 0.9 })
-    smStream.write({ url: '/Harishchandragad-trek-via-nalichi-vat', changefreq: 'daily', priority: 0.9 })
-    smStream.write({ url: '/Harishchandragad-trek-via-khileshwar', changefreq: 'daily', priority: 0.9 })
     smStream.write({ url: '/alang-madan-kulang-trek', changefreq: 'daily', priority: 0.9 })
     smStream.write({ url: '/sandhan-valley-trek', changefreq: 'daily', priority: 0.9 })
     smStream.write({ url: '/contact', changefreq: 'daily', priority: 0.9 })
     smStream.write({ url: '/packages', changefreq: 'daily', priority: 0.8 })
     smStream.write({ url: '/services', changefreq: 'daily', priority: 0.7 })
     smStream.write({ url: '/gallery', changefreq: 'daily', priority: 0.5 })
-
-    /* or use
-    Readable.from([{url: '/page-1'}...]).pipe(smStream)
-    if you are looking to avoid writing your own loop.
-    */
 
     // cache the response
     streamToPromise(pipeline).then(sm => sitemap = sm)

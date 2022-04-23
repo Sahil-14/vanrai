@@ -72,42 +72,88 @@ packageRouter.get('/packages', async (req, res) => {
   }
 })
 
-/*******************************************************
- * -- single package page  \\ package booking page------*
- *******************************************************/
-packageRouter.get('/package/:id', async (req, res) => {
+packageRouter.get('/package/documentedPackage/:name', async (req, res) => {
+  const formatedName = req.params.name.trim().toLowerCase().replace(/-/g, ' ');
+
   try
   {
+    // const formatedName = req.params.name.trim().toLowerCase().replace(/-/g, ' ');
+    // console.log(formatedName);
 
-    const response = await axios.get(`${process.env.URL}/api/packages/${req.params.id}`);
-
-    const dates = await Dates.findAll({ where: { package_id: req.params.id }, attributes: ['date'] })
+    const response = await axios.get(`${process.env.URL}/api/packages/formated/${formatedName}`);
+    const package = response.data.package;
+    const dates = await Dates.findAll({ where: { package_id: package.package_id }, attributes: ['date'] })
     var availableDates = [];
     dates.forEach((item) => {
       const formatedDate = moment(item.date).format('DD-MM-YYYY');
       availableDates.push(formatedDate);
     })
-
     res.render('pages/packageBooking', {
+      package,
       page: 'packages',
-      package: response.data.package,
       availableDates,
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
       moment,
       error: null
     })
+
+
   } catch (error)
   {
 
-    res.render('pages/packageBooking', {
+    res.render('pages/', {
       successMessage: req.query?.successMessage || null,
       errorMessage: req.query?.errorMessage || null,
       page: 'packagesBooking',
       error: "Error to load package .Please try after some time."
     })
   }
+
 })
+/*******************************************************
+ * -- single package page  \\ package booking page------*
+ *******************************************************/
+packageRouter.get('/package/:id', async (req, res) => {
+  try
+  {
+    const formatedName = req.params.name.trim().toLowerCase().replace(/-/g, ' ');
+    console.log(formatedName);
+    const response = await axios.get(`${process.env.URL}/api/packages/${req.params.id}`);
+    const package = response.data.package;
+    console.log(package);
+    const dates = await Dates.findAll({ where: { package_id: req.params.id }, attributes: ['date'] })
+    var availableDates = [];
+    dates.forEach((item) => {
+      const formatedDate = moment(item.date).format('DD-MM-YYYY');
+      availableDates.push(formatedDate);
+    })
+    res.render('pages/packageBooking', {
+      package,
+      page: 'packages',
+      availableDates,
+      successMessage: req.query?.successMessage || null,
+      errorMessage: req.query?.errorMessage || null,
+      moment,
+      error: null
+    })
+
+
+  } catch (error)
+  {
+
+    res.render('pages/', {
+      successMessage: req.query?.successMessage || null,
+      errorMessage: req.query?.errorMessage || null,
+      page: 'packagesBooking',
+      error: "Error to load package .Please try after some time."
+    })
+  }
+
+
+})
+
+
 /*******************************
  * -- 1.create package --------*
  *******************************/

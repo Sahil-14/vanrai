@@ -16,17 +16,20 @@ contactRouter.get('/contact', async (req, res) => {
   })
 })
 
-contactRouter.get('/vanrai-admin/message', currentUser, requireAuth,async(req,res) => {
-  try {
-    
-  } catch (error) {
-    
+contactRouter.get('/vanrai-admin/message', async (req, res) => {
+  try
+  {
+
+  } catch (error)
+  {
+
   }
 })
 
-contactRouter.post('/vanrai-admin/message', currentUser, requireAuth, async (req, res) => {
+contactRouter.post('/vanrai-admin/message', async (req, res) => {
   const { name, email, message } = req.body;
-  try {
+  try
+  {
     const newMessage = {
       name,
       email,
@@ -41,7 +44,8 @@ contactRouter.post('/vanrai-admin/message', currentUser, requireAuth, async (req
         "errorMessage": null,
       }
     }));
-  } catch (error) {
+  } catch (error)
+  {
     res.redirect(url.format({
       pathname: "/contact",
       query: {
