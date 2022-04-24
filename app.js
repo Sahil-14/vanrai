@@ -129,20 +129,14 @@ app.get('/', async (req, res) => {
   }
 
 })
-
 app.get('/Harishchandragad-trek', (req, res) => {
   res.redirect('/packages')
 })
-app.get('/Harishchandragad-trek-via-pachnai', (req, res) => {
-  res.redirect('/packages')
-})
-app.get('/Harishchandragad-trek-via-nalichi-vat', (req, res) => {
-  res.redirect('/packages')
-})
-app.get('/Harishchandragad-trek-via-khileshwar', (req, res) => {
-  res.redirect('/packages')
-})
 app.get('/sandhan-valley-trek', (req, res) => {
+  res.redirect('/packages')
+})
+
+app.get('/alang-madan-kulang-trek', (req, res) => {
   res.redirect('/packages')
 })
 let sitemap
@@ -170,16 +164,16 @@ app.get('/sitemap.xml', async function (req, res) {
       smStream.write({
         url: `/package/documentedPackage/${package.name.trim().toLowerCase().replace(/ /g, '-')}`,
         changefreq: 'daily',
-        priority: 0.9
+        priority: 1
       })
     })
-    smStream.write({ url: '/Harishchandragad-trek', changefreq: 'daily', priority: 0.9 })
+    smStream.write({ url: '/contact', changefreq: 'daily', priority: 1 })
+    smStream.write({ url: '/Harishchandragad-trek', changefreq: 'daily', priority: 1 })
+    smStream.write({ url: '/packages', changefreq: 'daily', priority: 0.9 })
+    smStream.write({ url: '/services', changefreq: 'daily', priority: 0.9 })
     smStream.write({ url: '/alang-madan-kulang-trek', changefreq: 'daily', priority: 0.9 })
     smStream.write({ url: '/sandhan-valley-trek', changefreq: 'daily', priority: 0.9 })
-    smStream.write({ url: '/contact', changefreq: 'daily', priority: 0.9 })
-    smStream.write({ url: '/packages', changefreq: 'daily', priority: 0.8 })
-    smStream.write({ url: '/services', changefreq: 'daily', priority: 0.7 })
-    smStream.write({ url: '/gallery', changefreq: 'daily', priority: 0.5 })
+    smStream.write({ url: '/gallery', changefreq: 'daily', priority: 0.8 })
 
     // cache the response
     streamToPromise(pipeline).then(sm => sitemap = sm)

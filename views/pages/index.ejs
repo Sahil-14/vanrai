@@ -176,7 +176,9 @@
                             <% } %>
                         </div>
                         <div class="mt-2">
-                          <a class="btn-solid-lg page-scroll" href="/package/<%= package.package_id%>">READ MORE</a>
+                          <a class="btn-solid-lg page-scroll"
+                            href="/package/documentedPackage/<%= package.name.trim().toLowerCase().replace(/ /g,'-') %>">READ
+                            MORE</a>
                         </div>
                       </div>
                       <!--/.single-package-item-txt-->
